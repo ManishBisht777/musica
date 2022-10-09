@@ -1,0 +1,33 @@
+@use "./assets" as *;
+@use "../components/searchbar/search";
+@use "../components/songbar/song";
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  align-items: center;
+  background: $background;
+  height: 100vh;
+  color: $white;
+
+  ul {
+    padding: 1rem;
+    border-radius: 2rem;
+    background: $darkbg;
+    li {
+      margin: 1rem 0;
+
+      img,
+      svg {
+        width: 1.5rem;
+        font-size: 1.5rem;
+        color: gray;
+      }
+    }
+  }
+}

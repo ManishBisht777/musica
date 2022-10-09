@@ -1,0 +1,20 @@
+@use "../../scss/assets" as *;
+
+.songbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: $darkbgblur;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  img {
+    width: 3rem;
+  }
+}

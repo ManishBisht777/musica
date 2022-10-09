@@ -1,0 +1,26 @@
+@use "../../scss/assets" as *;
+
+.search {
+  padding: 1rem 4rem;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: $darkbg;
+
+  input {
+    background: transparent;
+    border: none;
+    color: $white;
+    width: 100%;
+  }
+
+  svg {
+    color: $white;
+    font-size: 1.25rem;
+
+    &:hover {
+      color: $yellow;
+    }
+  }
+}

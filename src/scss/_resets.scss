@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
@@ -40,4 +44,5 @@ button {
 body {
   font-family: "Quicksand", sans-serif;
   font-size: 1.125rem;
+  background: #1d2123;
 }

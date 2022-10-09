@@ -1,0 +1,208 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  line-height: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.125rem;
+  background: #1d2123;
+}
+
+.search {
+  padding: 1rem 4rem;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #1a1e1f;
+}
+.search input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 100%;
+}
+.search svg {
+  color: #fff;
+  font-size: 1.25rem;
+}
+.search svg:hover {
+  color: #facd66;
+}
+
+.songbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(26, 30, 31, 0.631372549);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.songbar img {
+  width: 3rem;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  align-items: center;
+  background: #1d2123;
+  height: 100vh;
+  color: #fff;
+}
+nav ul {
+  padding: 1rem;
+  border-radius: 2rem;
+  background: #1a1e1f;
+}
+nav ul li {
+  margin: 1rem 0;
+}
+nav ul li img,
+nav ul li svg {
+  width: 1.5rem;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.home {
+  background: #1d2123;
+  width: 100%;
+  padding-left: 5rem;
+}
+
+.banner {
+  width: 60%;
+}
+
+.top-chart-wrapper {
+  margin-top: 4rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.playlist {
+  display: flex;
+}
+
+.top-chart {
+  padding: 1rem;
+  width: 30%;
+}
+.top-chart h1 {
+  font-weight: 700;
+}
+
+.playlist {
+  display: flex;
+  background: #1a1e1f;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  align-items: center;
+  position: relative;
+}
+.playlist img {
+  width: 5rem;
+  height: 5rem;
+}
+.playlist svg {
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  color: #facd66;
+}
+
+.playlistinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.playlistinfo h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.playlistinfo p {
+  font-size: 0.875rem;
+  color: gray;
+}
+.playlistinfo .time {
+  font-size: 0.875rem;
+  color: #fff;
+}
+
+article {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.new-release {
+  padding: 1rem 3rem;
+}
+.new-release h2 {
+  color: #fff;
+  margin: 1rem 0;
+  text-transform: capitalize;
+}
+
+.release-box {
+  display: flex;
+  gap: 1rem;
+}
+.release-box img {
+  width: 10rem;
+  height: 10rem;
+}/*# sourceMappingURL=main.css.map */

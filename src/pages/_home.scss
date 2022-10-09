@@ -1,0 +1,97 @@
+@use "../scss/assets" as *;
+
+.home {
+  background: $background;
+  width: 100%;
+  padding-left: 5rem;
+}
+
+.banner {
+  width: 60%;
+}
+
+.top-chart-wrapper {
+  margin-top: 4rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.playlist {
+  display: flex;
+}
+
+.top-chart {
+  padding: 1rem;
+  width: 30%;
+
+  h1 {
+    font-weight: 700;
+  }
+}
+
+.playlist {
+  display: flex;
+  background: $darkbg;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  align-items: center;
+  position: relative;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  svg {
+    position: absolute;
+    right: 1rem;
+    top: 2.5rem;
+    color: $yellow;
+  }
+}
+
+.playlistinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  p {
+    font-size: 0.875rem;
+    color: gray;
+  }
+  .time {
+    font-size: 0.875rem;
+    color: $white;
+  }
+}
+
+article {
+  color: $white;
+  text-transform: capitalize;
+}
+
+.new-release {
+  padding: 1rem 3rem;
+  h2 {
+    color: $white;
+    margin: 1rem 0;
+    text-transform: capitalize;
+  }
+}
+
+.release-box {
+  display: flex;
+  gap: 1rem;
+
+  img {
+    width: 10rem;
+    height: 10rem;
+  }
+}
