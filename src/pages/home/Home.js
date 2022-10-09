@@ -1,17 +1,17 @@
-import list1 from "../images/list1.png";
-import list2 from "../images/list2.png";
-import list3 from "../images/list3.png";
-import list4 from "../images/list4.png";
-import list5 from "../images/list5.png";
-import list6 from "../images/list6.png";
-import list7 from "../images/list7.png";
-import list8 from "../images/list8.png";
-import list9 from "../images/list9.png";
+import list1 from "../../images/list1.png";
+import list2 from "../../images/list2.png";
+import list3 from "../../images/list3.png";
+import list4 from "../../images/list4.png";
+import list5 from "../../images/list5.png";
+import list6 from "../../images/list6.png";
+import list7 from "../../images/list7.png";
+import list8 from "../../images/list8.png";
+import list9 from "../../images/list9.png";
 
 import { AiOutlineHeart } from "react-icons/ai";
 
-import heroimg from "../images/hero.svg";
-import Search from "../components/searchbar/Search";
+import heroimg from "../../images/hero.svg";
+import Search from "../../components/searchbar/Search";
 
 const Home = () => {
   return (
@@ -28,7 +28,9 @@ const Home = () => {
               <p>artist</p>
               <p className="time">2:34:45</p>
             </div>
-            <AiOutlineHeart />
+            <div className="favourite">
+              <AiOutlineHeart />
+            </div>
           </article>
           <article className="playlist">
             <img src={list2} alt="list2" />
@@ -37,7 +39,9 @@ const Home = () => {
               <p>artist</p>
               <p className="time">2:34:45</p>
             </div>
-            <AiOutlineHeart />
+            <div className="favourite">
+              <AiOutlineHeart />
+            </div>
           </article>
           <article className="playlist">
             <img src={list3} alt="list3" />
@@ -46,7 +50,9 @@ const Home = () => {
               <p>artist</p>
               <p className="time">2:34:45</p>
             </div>
-            <AiOutlineHeart />
+            <div className="favourite">
+              <AiOutlineHeart />
+            </div>
           </article>
         </article>
       </section>

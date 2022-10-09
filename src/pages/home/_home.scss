@@ -1,7 +1,6 @@
-@use "../scss/assets" as *;
+@use "../../scss/assets" as *;
 
 .home {
-  background: $background;
   width: 100%;
   padding-left: 5rem;
 }
@@ -45,10 +44,20 @@
     height: 5rem;
   }
 
-  svg {
+  .favourite {
     position: absolute;
     right: 1rem;
-    top: 2.5rem;
+    top: 2rem;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #face6681;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg {
     color: $yellow;
   }
 }

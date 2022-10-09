@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../../images/logo.svg";
 import Songbar from "../songbar/Songbar";
 
-// icons import
+import { Link } from "react-router-dom";
 
+// icons import
 import { BiHomeAlt } from "react-icons/bi";
 import logout from "../../images/icons/Logout.svg";
 import music from "../../images/icons/music.svg";
@@ -14,41 +15,41 @@ import radio from "../../images/icons/radio.svg";
 const Navbar = () => {
   return (
     <nav>
-      <a href="/" aria-label="muscia">
+      <Link to="/" aria-label="muscia">
         <img src={logo} alt="musica" />
-      </a>
+      </Link>
       <ul>
         <li>
-          <a aria-label="home" href="/">
+          <Link aria-label="home" to="/">
             <BiHomeAlt />
-          </a>
+          </Link>
         </li>
         <li>
-          <a aria-label="collection" href="/">
+          <Link aria-label="collection" to="/collection">
             <img src={playlist} alt="collection-icon" />
-          </a>
+          </Link>
         </li>
         <li>
-          <a aria-label="radio" href="/">
+          <Link aria-label="radio" to="/">
             <img src={radio} alt="radio-icon" />
-          </a>
+          </Link>
         </li>
         <li>
-          <a aria-label="music" href="/">
+          <Link aria-label="music" to="/">
             <img src={music} alt="music-icon" />
-          </a>
+          </Link>
         </li>
       </ul>
       <ul>
         <li>
-          <a aria-label="profile" href="/">
+          <Link aria-label="profile" to="/">
             <img src={profile} alt="rofile-icon" />
-          </a>
+          </Link>
         </li>
         <li>
-          <a aria-label="logout" href="/">
+          <Link aria-label="logout" to="/">
             <img src={logout} alt="logout-icon" />
-          </a>
+          </Link>
         </li>
       </ul>
       <Songbar />

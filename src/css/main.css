@@ -117,7 +117,6 @@ nav ul li svg {
 }
 
 .home {
-  background: #1d2123;
   width: 100%;
   padding-left: 5rem;
 }
@@ -159,10 +158,19 @@ nav ul li svg {
   width: 5rem;
   height: 5rem;
 }
-.playlist svg {
+.playlist .favourite {
   position: absolute;
   right: 1rem;
-  top: 2.5rem;
+  top: 2rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(250, 206, 102, 0.5058823529);
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playlist svg {
   color: #facd66;
 }
 
@@ -205,4 +213,57 @@ article {
 .release-box img {
   width: 10rem;
   height: 10rem;
+}
+
+.collection {
+  width: 100%;
+  padding-left: 9rem;
+}
+
+.filter {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.filter button {
+  padding: 0.5rem 1.5rem;
+  color: #1a1e1f;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: #facd66;
+  border: 0.2rem solid #facd66;
+  border-radius: 3rem;
+}
+
+.collection-list {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.collection-item {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.collection-item article {
+  position: absolute;
+  background: rgba(3, 3, 3, 0.363);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1rem;
+}
+.collection-item article h2 {
+  font-size: 1rem;
+}
+.collection-item article p {
+  font-size: 0.875rem;
 }/*# sourceMappingURL=main.css.map */
