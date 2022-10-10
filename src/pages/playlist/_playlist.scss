@@ -1,0 +1,77 @@
+@use "../../scss/assets" as *;
+
+.playlist-page {
+  padding-left: 7rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.playlist-bg {
+  background: url("/public/bg3.jpg") no-repeat center/cover;
+  background-color: rgba(0, 0, 0, 0.849);
+  background-blend-mode: darken;
+  padding: 3rem;
+  padding-top: 1rem;
+}
+
+.playlist-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+
+  img {
+    width: 15rem;
+  }
+  p {
+    font-size: 0.875rem;
+  }
+
+  button {
+    font-size: 0.875rem;
+  }
+}
+
+.playlist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+  text-transform: capitalize;
+}
+
+.options {
+  display: flex;
+  gap: 0.5rem;
+  button {
+    padding: 0.75rem;
+    border-radius: 2rem;
+    background: $darkbg;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    img {
+      width: 1rem;
+      filter: invert(70%) sepia(65%) saturate(332%) hue-rotate(0deg)
+        brightness(104%) contrast(96%);
+    }
+  }
+}
+
+.song-wrapper {
+  margin-top: 2rem;
+  padding-right: 2rem;
+}
+
+.song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  background: $darkbg;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  img {
+    width: 2.5rem;
+  }
+}

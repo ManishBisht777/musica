@@ -2,15 +2,15 @@
 
 .home {
   width: 100%;
-  padding-left: 5rem;
+  padding-left: 10rem;
 }
 
 .banner {
-  width: 60%;
+  width: 70%;
 }
 
 .top-chart-wrapper {
-  margin-top: 4rem;
+  margin-top: 0.5rem;
   display: flex;
   gap: 2rem;
   justify-content: center;
@@ -87,7 +87,6 @@ article {
 }
 
 .new-release {
-  padding: 1rem 3rem;
   h2 {
     color: $white;
     margin: 1rem 0;

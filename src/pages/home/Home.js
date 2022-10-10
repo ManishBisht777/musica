@@ -10,6 +10,8 @@ import list9 from "../../images/list9.png";
 
 import { AiOutlineHeart } from "react-icons/ai";
 
+import { Link } from "react-router-dom";
+
 import heroimg from "../../images/hero.svg";
 import Search from "../../components/searchbar/Search";
 
@@ -32,17 +34,20 @@ const Home = () => {
               <AiOutlineHeart />
             </div>
           </article>
-          <article className="playlist">
-            <img src={list2} alt="list2" />
-            <div className="playlistinfo">
-              <h2>golden dog</h2>
-              <p>artist</p>
-              <p className="time">2:34:45</p>
-            </div>
-            <div className="favourite">
-              <AiOutlineHeart />
-            </div>
-          </article>
+
+          <Link to="/playlist">
+            <article className="playlist">
+              <img src={list2} alt="list2" />
+              <div className="playlistinfo">
+                <h2>golden dog</h2>
+                <p>artist</p>
+                <p className="time">2:34:45</p>
+              </div>
+              <div className="favourite">
+                <AiOutlineHeart />
+              </div>
+            </article>
+          </Link>
           <article className="playlist">
             <img src={list3} alt="list3" />
             <div className="playlistinfo">

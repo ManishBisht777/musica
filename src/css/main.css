@@ -49,12 +49,11 @@ body {
 }
 
 .search {
-  padding: 1rem 4rem;
+  padding: 1rem 0rem;
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
   align-items: center;
-  background: #1a1e1f;
 }
 .search input {
   background: transparent;
@@ -78,14 +77,121 @@ body {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(26, 30, 31, 0.631372549);
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   gap: 1rem;
 }
 .songbar img {
+  width: 4rem;
+}
+
+.current-song {
+  display: flex;
+  gap: 1rem;
+  width: 20%;
+}
+.current-song article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.current-song article h2 {
+  font-size: 1rem;
+}
+.current-song article p {
+  font-size: 0.875rem;
+}
+
+.audio-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.audio-box input[type=range] {
+  width: 100%;
+}
+
+.playpause {
+  background: #facd66;
+  border-radius: 3rem;
   width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playpause img {
+  width: 1rem !important;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(110%) contrast(103%);
+}
+
+.volume-output {
+  width: 20%;
+}
+
+.audio-controls {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.audio-controls button img {
+  width: 2rem;
+  color: #facd66;
+}
+
+input[type=range] {
+  position: relative;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin: 0;
+  padding: 0;
+  height: 0.5rem;
+  float: left;
+  outline: none;
+  background: #1a1e1f;
+  box-shadow: inset 0 0 0.1rem rgba(255, 255, 255, 0.2);
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  border: 0.1rem solid #facd66;
+  background: #facd66;
+  background-clip: content-box;
+  padding: 0.2em;
+  cursor: pointer;
+  -moz-appearance: none;
+       appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  border: 0.1rem solid #facd66;
+  background: #facd66;
+  background-clip: content-box;
+  padding: 0.2em;
+  cursor: pointer;
+  box-shadow: 0 0 10rem #facd66;
+}
+
+input[type=range]::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: 0.3rem;
+  background: #facd66;
+  -moz-appearance: none;
+       appearance: none;
 }
 
 nav {
@@ -118,15 +224,15 @@ nav ul li svg {
 
 .home {
   width: 100%;
-  padding-left: 5rem;
+  padding-left: 10rem;
 }
 
 .banner {
-  width: 60%;
+  width: 70%;
 }
 
 .top-chart-wrapper {
-  margin-top: 4rem;
+  margin-top: 0.5rem;
   display: flex;
   gap: 2rem;
   justify-content: center;
@@ -197,9 +303,6 @@ article {
   text-transform: capitalize;
 }
 
-.new-release {
-  padding: 1rem 3rem;
-}
 .new-release h2 {
   color: #fff;
   margin: 1rem 0;
@@ -266,4 +369,77 @@ article {
 }
 .collection-item article p {
   font-size: 0.875rem;
+}
+
+.playlist-page {
+  padding-left: 7rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.playlist-bg {
+  background: url("/public/bg3.jpg") no-repeat center/cover;
+  background-color: rgba(0, 0, 0, 0.849);
+  background-blend-mode: darken;
+  padding: 3rem;
+  padding-top: 1rem;
+}
+
+.playlist-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.playlist-wrapper img {
+  width: 15rem;
+}
+.playlist-wrapper p {
+  font-size: 0.875rem;
+}
+.playlist-wrapper button {
+  font-size: 0.875rem;
+}
+
+.playlist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+  text-transform: capitalize;
+}
+
+.options {
+  display: flex;
+  gap: 0.5rem;
+}
+.options button {
+  padding: 0.75rem;
+  border-radius: 2rem;
+  background: #1a1e1f;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.options button img {
+  width: 1rem;
+  filter: invert(70%) sepia(65%) saturate(332%) hue-rotate(0deg) brightness(104%) contrast(96%);
+}
+
+.song-wrapper {
+  margin-top: 2rem;
+  padding-right: 2rem;
+}
+
+.song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  background: #1a1e1f;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.song img {
+  width: 2.5rem;
 }/*# sourceMappingURL=main.css.map */
