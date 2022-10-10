@@ -4,6 +4,7 @@ import list1 from "../../images/list1.png";
 import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
+import volume from "../../images/icons/volume.svg";
 
 const Songbar = () => {
   return (
@@ -33,12 +34,10 @@ const Songbar = () => {
           <input type="range" id="seek-slider" max="100" />
         </div>
       </div>
-      <input
-        className="volume-output"
-        type="range"
-        id="volume-slider"
-        max="100"
-      />
+      <div className="volume-output">
+        <img src={volume} alt="volume" />
+        <input type="range" id="volume-slider" max="100" />
+      </div>
     </div>
   );
 };
