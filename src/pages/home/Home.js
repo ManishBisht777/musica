@@ -18,9 +18,17 @@ import Search from "../../components/searchbar/Search";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+import { motion } from "framer-motion";
+import { exit, fadeIn, fadeOut } from "../../animation/animation";
+
 const Home = () => {
   return (
-    <main className="home">
+    <motion.main
+      initial={fadeIn}
+      animate={fadeOut}
+      exit={exit}
+      className="home"
+    >
       <Search />
       <section className="top-chart-wrapper">
         <img className="banner" src={heroimg} alt="hero" />
@@ -184,7 +192,7 @@ const Home = () => {
           </Swiper>
         </div>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

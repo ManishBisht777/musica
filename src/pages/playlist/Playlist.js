@@ -6,9 +6,17 @@ import playicon from "../../images/icons/play.svg";
 import hearticon from "../../images/icons/heart.svg";
 import collectionicon from "../../images/icons/collection.svg";
 
+import { motion } from "framer-motion";
+import { exit, fadeIn, fadeOut } from "../../animation/animation";
+
 const Playlist = () => {
   return (
-    <main className="playlist-page">
+    <motion.main
+      initial={fadeIn}
+      animate={fadeOut}
+      exit={exit}
+      className="playlist-page"
+    >
       <section className="playlist-bg">
         <Search />
         <section className="playlist-wrapper">
@@ -69,7 +77,7 @@ const Playlist = () => {
           <button>more option</button>
         </article>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

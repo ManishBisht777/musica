@@ -6,9 +6,17 @@ import list2 from "../../images/list8.png";
 import list3 from "../../images/list9.png";
 import list4 from "../../images/list10.png";
 
+import { motion } from "framer-motion";
+import { exit, fadeIn, fadeOut } from "../../animation/animation";
+
 const Collection = () => {
   return (
-    <main className="collection">
+    <motion.main
+      initial={fadeIn}
+      animate={fadeOut}
+      exit={exit}
+      className="collection"
+    >
       <Search />
       <div className="filter">
         <button>my collection</button>
@@ -44,7 +52,7 @@ const Collection = () => {
           </article>
         </article>
       </div>
-    </main>
+    </motion.main>
   );
 };
 
