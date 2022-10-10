@@ -73,7 +73,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(26, 30, 31, 0.631372549);
@@ -125,7 +125,6 @@ body {
 }
 .playpause img {
   width: 1rem !important;
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(110%) contrast(103%);
 }
 
 .volume-output {
@@ -147,7 +146,7 @@ body {
 }
 .audio-controls button img {
   width: 2rem;
-  color: #facd66;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(110%) contrast(103%);
 }
 
 input[type=range] {
@@ -379,17 +378,10 @@ article {
 }
 
 .playlist-page {
-  padding-left: 7rem;
+  padding-left: 9rem;
   width: 100%;
   min-height: 100vh;
-}
-
-.playlist-bg {
-  background: url("/public/bg3.jpg") no-repeat center/cover;
-  background-color: rgba(0, 0, 0, 0.849);
-  background-blend-mode: darken;
-  padding: 3rem;
-  padding-top: 1rem;
+  background: url("/public/images/collectionbg.svg") no-repeat center center/cover;
 }
 
 .playlist-wrapper {

@@ -15,6 +15,9 @@ import { Link } from "react-router-dom";
 import heroimg from "../../images/hero.svg";
 import Search from "../../components/searchbar/Search";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
 const Home = () => {
   return (
     <main className="home">
@@ -64,53 +67,121 @@ const Home = () => {
       <section className="new-release">
         <h2>new releases.</h2>
         <div className="release-box">
-          <a href="/">
-            <img src={list3} alt="list3" />
-          </a>
-          <a href="/">
-            <img src={list4} alt="list1" />
-          </a>
-          <a href="/">
-            <img src={list5} alt="list2" />
-          </a>
-          <a href="/">
-            <img src={list6} alt="list3" />
-          </a>
-          <a href="/">
-            <img src={list7} alt="list1" />
-          </a>
-          <a href="/">
-            <img src={list8} alt="list1" />
-          </a>
-          <a href="/">
-            <img src={list9} alt="list1" />
-          </a>
+          <Swiper
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 30,
+              },
+            }}
+            spaceBetween={15}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <a href="/">
+                <img src={list3} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list4} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list5} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list6} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list7} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list8} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list9} alt="list3" />
+              </a>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
       <section className="new-release">
         <h2>new releases.</h2>
         <div className="release-box">
-          <a href="/">
-            <img src={list1} alt="list1" />
-          </a>
-          <a href="/">
-            <img src={list2} alt="list2" />
-          </a>
-          <a href="/">
-            <img src={list3} alt="list3" />
-          </a>
-          <a href="/">
-            <img src={list4} alt="list1" />
-          </a>
-          <a href="/">
-            <img src={list5} alt="list2" />
-          </a>
-          <a href="/">
-            <img src={list6} alt="list3" />
-          </a>
-          <a href="/">
-            <img src={list7} alt="list1" />
-          </a>
+          <Swiper
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 30,
+              },
+            }}
+            spaceBetween={15}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <a href="/">
+                <img src={list1} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list2} alt="list3" />
+              </a>
+            </SwiperSlide>{" "}
+            <SwiperSlide>
+              <a href="/">
+                <img src={list5} alt="list3" />
+              </a>
+            </SwiperSlide>{" "}
+            <SwiperSlide>
+              <a href="/">
+                <img src={list6} alt="list3" />
+              </a>
+            </SwiperSlide>{" "}
+            <SwiperSlide>
+              <a href="/">
+                <img src={list7} alt="list3" />
+              </a>
+            </SwiperSlide>{" "}
+            <SwiperSlide>
+              <a href="/">
+                <img src={list8} alt="list3" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/">
+                <img src={list9} alt="list3" />
+              </a>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
     </main>

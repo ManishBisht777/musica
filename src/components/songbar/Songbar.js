@@ -31,12 +31,17 @@ const Songbar = () => {
           </button>
         </div>
         <div className="audio">
-          <input type="range" id="seek-slider" max="100" />
+          <input type="range" id="seek-slider" max="100" aria-label="song" />
         </div>
       </div>
       <div className="volume-output">
         <img src={volume} alt="volume" />
-        <input type="range" id="volume-slider" max="100" />
+        <input
+          type="range"
+          id="volume-slider"
+          max="100"
+          aria-label="volume-bar"
+        />
       </div>
     </div>
   );
