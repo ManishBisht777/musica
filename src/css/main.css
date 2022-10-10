@@ -212,6 +212,7 @@ nav {
   background: #1d2123;
   height: 100vh;
   color: #fff;
+  z-index: 1;
 }
 nav ul {
   padding: 1rem;
@@ -309,6 +310,10 @@ article {
   text-transform: capitalize;
 }
 
+.new-release {
+  position: relative;
+  z-index: 0;
+}
 .new-release h2 {
   color: #fff;
   margin: 1rem 0;
