@@ -134,3 +134,21 @@ input[type="range"]::-moz-range-progress {
   background: $yellow;
   appearance: none;
 }
+
+@media screen and (max-width: 600px) {
+  .songbar {
+    justify-content: space-between;
+  }
+  .volume-output {
+    display: none;
+  }
+
+  .audio {
+    display: none;
+  }
+
+  .playpause {
+    width: 2rem;
+    height: 2rem;
+  }
+}
