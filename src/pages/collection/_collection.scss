@@ -56,3 +56,29 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .collection {
+    padding: 2rem 1rem;
+    padding-bottom: 8rem;
+  }
+
+  .collection-list {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter {
+    button {
+      font-size: 1rem;
+    }
+  }
+
+  .collection-item {
+    img {
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+}

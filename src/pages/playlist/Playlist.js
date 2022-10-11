@@ -5,6 +5,7 @@ import list5 from "../../images/list5.png";
 import playicon from "../../images/icons/play.svg";
 import hearticon from "../../images/icons/heart.svg";
 import collectionicon from "../../images/icons/collection.svg";
+import option from "../../images/icons/option.svg";
 
 import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
@@ -45,36 +46,20 @@ const Playlist = () => {
 
       <section className="song-wrapper">
         <article className="song">
-          <img src={list5} alt="" />
-
-          <p>name of song</p>
-          <p>artist</p>
-          <p>durtion</p>
-          <button>more option</button>
-        </article>
-        <article className="song">
-          <img src={list5} alt="" />
-
-          <p>name of song</p>
-          <p>artist</p>
-          <p>durtion</p>
-          <button>more option</button>
-        </article>
-        <article className="song">
-          <img src={list5} alt="" />
-
-          <p>name of song</p>
-          <p>artist</p>
-          <p>durtion</p>
-          <button>more option</button>
-        </article>
-        <article className="song">
-          <img src={list5} alt="" />
-
-          <p>name of song</p>
-          <p>artist</p>
-          <p>durtion</p>
-          <button>more option</button>
+          <div className="stylebx">
+            <img src={list5} alt="" />
+            <img src={hearticon} alt="heart" />
+          </div>
+          <div className="stylebx">
+            <p>name of song</p>
+            <p>artist</p>
+          </div>
+          <div className="stylebx">
+            <p>4.35</p>
+            <button>
+              <img src={option} alt="option" />
+            </button>
+          </div>
         </article>
       </section>
     </motion.main>

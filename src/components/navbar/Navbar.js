@@ -35,34 +35,70 @@ const Navbar = () => {
       <div className="navlinks">
         <ul>
           <li>
-            <Link aria-label="home" to="/">
+            <Link
+              aria-label="home"
+              to="/"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <BiHomeAlt />
             </Link>
           </li>
           <li>
-            <Link aria-label="collection" to="/collection">
+            <Link
+              aria-label="collection"
+              to="/collection"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <img src={playlist} alt="collection-icon" />
             </Link>
           </li>
           <li>
-            <Link aria-label="radio" to="/">
+            <Link
+              aria-label="radio"
+              to="/"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <img src={radio} alt="radio-icon" />
             </Link>
           </li>
           <li>
-            <Link aria-label="music" to="/">
+            <Link
+              aria-label="music"
+              to="/"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <img src={music} alt="music-icon" />
             </Link>
           </li>
         </ul>
         <ul>
           <li>
-            <Link aria-label="profile" to="/">
+            <Link
+              aria-label="profile"
+              to="/"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <img src={profile} alt="rofile-icon" />
             </Link>
           </li>
           <li>
-            <Link aria-label="logout" to="/">
+            <Link
+              aria-label="logout"
+              to="/"
+              onClick={() => {
+                settogglenav(!togglenav);
+              }}
+            >
               <img src={logout} alt="logout-icon" />
             </Link>
           </li>
