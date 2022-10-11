@@ -229,13 +229,79 @@ nav ul li svg {
   color: gray;
 }
 
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  nav {
+    position: absolute;
+    top: 0;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .hamburger[aria-expanded=false] + .navlinks {
+    opacity: 0;
+    transform: translateX(-200vw);
+  }
+  .navlinks {
+    flex-direction: row;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+    width: 100vw;
+    height: 75vh;
+    background: #1a1e1f;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2rem;
+  }
+  .navlinks ul {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .navlinks ul li {
+    margin: 0;
+  }
+  .navlinks ul li a {
+    position: relative;
+  }
+  .navlinks ul li a::before {
+    content: attr(aria-label);
+    position: absolute;
+    left: 3rem;
+    transition: 0.3s ease-in-out;
+    text-transform: capitalize;
+    color: #fff;
+  }
+}
 .home {
   width: 100%;
   padding-left: 10rem;
+  padding-bottom: 5rem;
+}
+
+.hamburger {
+  display: none;
+}
+.hamburger svg {
+  font-size: 2rem;
 }
 
 .banner {
-  width: 70%;
+  width: 60%;
 }
 
 .top-chart-wrapper {
@@ -329,6 +395,41 @@ article {
   height: 10rem;
 }
 
+.swiper-slide {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+@media screen and (max-width: 900px) {
+  .home {
+    padding: 2rem 1rem;
+    padding-bottom: 8rem;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .top-chart-wrapper {
+    flex-direction: column;
+    padding: 0rem;
+  }
+  .banner {
+    width: 100%;
+  }
+  .top-chart {
+    width: 100%;
+    padding: 0;
+  }
+  .release-box img {
+    width: 15rem;
+    height: 15rem;
+  }
+  .new-release {
+    margin-top: 2rem;
+  }
+  .new-release h2 {
+    font-size: 1.5rem;
+  }
+}
 .collection {
   width: 100%;
   padding-left: 9rem;

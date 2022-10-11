@@ -32,3 +32,66 @@ nav {
     }
   }
 }
+
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and(max-width:900px) {
+  nav {
+    position: absolute;
+    top: 0;
+    height: fit-content;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hamburger[aria-expanded="false"] + .navlinks {
+    opacity: 0;
+    transform: translateX(-200vw);
+  }
+
+  .navlinks {
+    flex-direction: row;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    transform: translateX(0);
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+    width: 100vw;
+    height: 75vh;
+    background: $darkbg;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 2rem;
+
+    ul {
+      display: flex;
+      padding: 0;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      li {
+        margin: 0;
+        a {
+          position: relative;
+          &::before {
+            content: attr(aria-label);
+            position: absolute;
+            left: 3rem;
+            // width: 10px;
+            // height: 2px;
+            transition: 0.3s ease-in-out;
+            text-transform: capitalize;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
