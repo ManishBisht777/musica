@@ -1,39 +1,37 @@
+// icons and images import
+
 import list1 from "../../images/list1.png";
 import list2 from "../../images/list2.png";
 import list3 from "../../images/list3.png";
-import list4 from "../../images/list4.png";
-import list5 from "../../images/list5.png";
-import list6 from "../../images/list6.png";
-import list7 from "../../images/list7.png";
-import list8 from "../../images/list8.png";
-import list9 from "../../images/list9.png";
-
 import { AiOutlineHeart } from "react-icons/ai";
-
-import { Link } from "react-router-dom";
-
 import heroimg from "../../images/hero.svg";
-import Search from "../../components/searchbar/Search";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
-import { motion } from "framer-motion";
-import { exit, fadeIn, fadeOut } from "../../animation/animation";
+//dependency import
 
 import useAuth from "../../useAuth";
 import { useEffect, useState } from "react";
 
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Search from "../../components/searchbar/Search";
+import { motion } from "framer-motion";
+import { exit, fadeIn, fadeOut } from "../../animation/animation";
 import SpotifyWebApi from "spotify-web-api-node";
+
+// swiper css impirt
+import "swiper/css";
+
+// initilize spotify client
+
 const spotifyApi = new SpotifyWebApi({
   clientId: "5bcbd8541e76465481838de8f049a1fc",
 });
 
 const Home = ({ code }) => {
   const [newRelease, setnewRelease] = useState([]);
+  const [FeaturedPlaylist, setFeaturedPlaylist] = useState([]);
 
   const accesstoken = useAuth(code);
-  console.log(accesstoken);
 
   useEffect(() => {
     if (!accesstoken) return;
@@ -55,11 +53,19 @@ const Home = ({ code }) => {
           };
         })
       );
-      console.log(res.body.albums.items);
+    });
+
+    spotifyApi.getFeaturedPlaylists().then((res) => {
+      setFeaturedPlaylist(
+        res.body.playlists.items.map((playlist) => {
+          return {
+            url: playlist.uri,
+            playlistUrl: playlist.images[0].url,
+          };
+        })
+      );
     });
   }, [accesstoken]);
-
-  console.log(newRelease);
 
   return (
     <motion.main
@@ -115,64 +121,39 @@ const Home = ({ code }) => {
         <h2>new releases.</h2>
         <div className="release-box">
           <Swiper
-            slidesPerView={1}
+            slidesPerView={2}
             breakpoints={{
               640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
                 slidesPerView: 4,
                 spaceBetween: 20,
               },
+              768: {
+                slidesPerView: 5,
+                spaceBetween: 20,
+              },
               1024: {
-                slidesPerView: 6,
-                spaceBetween: 30,
+                slidesPerView: 7,
+                spaceBetween: 20,
               },
             }}
             spaceBetween={15}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <a href="/">
-                <img src={list3} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list4} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list5} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list6} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list7} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list8} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list9} alt="list3" />
-              </a>
-            </SwiperSlide>
+            {newRelease &&
+              newRelease.map((newalbum) => {
+                return (
+                  <SwiperSlide key={newalbum.url}>
+                    <a href={newalbum.url}>
+                      <img src={newalbum.albumUrl} alt={newalbum.title} />
+                    </a>
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
         </div>
       </section>
       <section className="new-release">
-        <h2>new releases.</h2>
+        <h2>Featured Playlist.</h2>
         <div className="release-box">
           <Swiper
             slidesPerView={1}
@@ -193,41 +174,16 @@ const Home = ({ code }) => {
             spaceBetween={15}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <a href="/">
-                <img src={list1} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list2} alt="list3" />
-              </a>
-            </SwiperSlide>{" "}
-            <SwiperSlide>
-              <a href="/">
-                <img src={list5} alt="list3" />
-              </a>
-            </SwiperSlide>{" "}
-            <SwiperSlide>
-              <a href="/">
-                <img src={list6} alt="list3" />
-              </a>
-            </SwiperSlide>{" "}
-            <SwiperSlide>
-              <a href="/">
-                <img src={list7} alt="list3" />
-              </a>
-            </SwiperSlide>{" "}
-            <SwiperSlide>
-              <a href="/">
-                <img src={list8} alt="list3" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="/">
-                <img src={list9} alt="list3" />
-              </a>
-            </SwiperSlide>
+            {FeaturedPlaylist &&
+              FeaturedPlaylist.map((playlist) => {
+                return (
+                  <SwiperSlide key={playlist.url}>
+                    <a href={playlist.url}>
+                      <img src={playlist.playlistUrl} alt="playlist" />
+                    </a>
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
         </div>
       </section>

@@ -408,6 +408,7 @@ article {
 .release-box img {
   width: 10rem;
   height: 10rem;
+  border-radius: 1rem;
 }
 
 .swiper-slide {

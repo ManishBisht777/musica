@@ -16,7 +16,7 @@ function App() {
       <Navbar code={code} />
       <AnimatePresence custom="wait">
         <Routes>
-          <Route path="/" element={<Home />} code={code} />
+          <Route path="/" element={<Home code={code} />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="/playlist" element={<Playlist />} />
         </Routes>
