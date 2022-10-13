@@ -18,8 +18,11 @@ import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
 import SpotifyWebApi from "spotify-web-api-node";
 
+import { useSelector } from "react-redux";
+
 // swiper css impirt
 import "swiper/css";
+import { GetFeaturedList, GetNewReleases } from "../../utils/utils";
 
 // initilize spotify client
 
@@ -27,44 +30,22 @@ const spotifyApi = new SpotifyWebApi({
   clientId: "5bcbd8541e76465481838de8f049a1fc",
 });
 
-const Home = ({ code }) => {
+const Home = () => {
   const [newRelease, setnewRelease] = useState([]);
   const [FeaturedPlaylist, setFeaturedPlaylist] = useState([]);
 
-  const accesstoken = useAuth(code);
+  const accesstoken = useSelector((state) => state.Auth.accessToken);
+
+  const getdata = async () => {
+    setnewRelease(await GetNewReleases(accesstoken));
+    setFeaturedPlaylist(await GetFeaturedList(accesstoken));
+  };
 
   useEffect(() => {
     if (!accesstoken) return;
     spotifyApi.setAccessToken(accesstoken);
 
-    spotifyApi.getNewReleases().then((res) => {
-      setnewRelease(
-        res.body.albums.items.map((album) => {
-          const smallestAlbumImage = album.images.reduce((smallest, image) => {
-            if (image.height < smallest.height) return image;
-            return smallest;
-          }, album.images[0]);
-
-          return {
-            artist: album.artists[0].name,
-            title: album.name,
-            url: album.uri,
-            albumUrl: smallestAlbumImage.url,
-          };
-        })
-      );
-    });
-
-    spotifyApi.getFeaturedPlaylists().then((res) => {
-      setFeaturedPlaylist(
-        res.body.playlists.items.map((playlist) => {
-          return {
-            url: playlist.uri,
-            playlistUrl: playlist.images[0].url,
-          };
-        })
-      );
-    });
+    getdata();
   }, [accesstoken]);
 
   return (
@@ -140,12 +121,12 @@ const Home = ({ code }) => {
             className="mySwiper"
           >
             {newRelease &&
-              newRelease.map((newalbum) => {
+              newRelease.map((newalbum, index) => {
                 return (
-                  <SwiperSlide key={newalbum.url}>
-                    <a href={newalbum.url}>
+                  <SwiperSlide key={index}>
+                    <Link to="/playlist" playlisturl={newalbum.url}>
                       <img src={newalbum.albumUrl} alt={newalbum.title} />
-                    </a>
+                    </Link>
                   </SwiperSlide>
                 );
               })}
@@ -156,31 +137,34 @@ const Home = ({ code }) => {
         <h2>Featured Playlist.</h2>
         <div className="release-box">
           <Swiper
-            slidesPerView={1}
+            slidesPerView={2}
             breakpoints={{
               640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              768: {
                 slidesPerView: 4,
                 spaceBetween: 20,
               },
+              768: {
+                slidesPerView: 5,
+                spaceBetween: 20,
+              },
               1024: {
-                slidesPerView: 6,
-                spaceBetween: 30,
+                slidesPerView: 7,
+                spaceBetween: 20,
               },
             }}
             spaceBetween={15}
             className="mySwiper"
           >
             {FeaturedPlaylist &&
-              FeaturedPlaylist.map((playlist) => {
+              FeaturedPlaylist.map((playlist, index) => {
+                let url = playlist.url;
+                url = url.slice(url.indexOf("playlist:") + 9);
+
                 return (
-                  <SwiperSlide key={playlist.url}>
-                    <a href={playlist.url}>
+                  <SwiperSlide key={index}>
+                    <Link to={`/playlist/${url}`}>
                       <img src={playlist.playlistUrl} alt="playlist" />
-                    </a>
+                    </Link>
                   </SwiperSlide>
                 );
               })}

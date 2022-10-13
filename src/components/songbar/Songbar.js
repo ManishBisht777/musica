@@ -5,10 +5,10 @@ import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
 import volume from "../../images/icons/volume.svg";
+import SpotifyPlayer from "react-spotify-player";
 
-const Songbar = () => {
-  return (
-    <div className="songbar">
+{
+  /* <div className="songbar">
       <article className="current-song">
         <img src={list1} alt="list" />
         <article>
@@ -43,7 +43,16 @@ const Songbar = () => {
           aria-label="volume-bar"
         />
       </div>
-    </div>
+    </div> */
+}
+
+<SpotifyPlayer uri="spotify:album:6AJaDEafyyyWWXHZQtcFGe" theme="black" />;
+const Songbar = () => {
+  return (
+    <audio
+      src="https://p.scdn.co/mp3-preview/f64f1b822853d3de0f453c02be68b72a19ace7c8?cid=5bcbd8541e76465481838de8f049a1fc"
+      controls
+    ></audio>
   );
 };
 

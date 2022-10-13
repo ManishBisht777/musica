@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Search from "../../components/searchbar/Search";
 import list5 from "../../images/list5.png";
 
@@ -9,8 +9,25 @@ import option from "../../images/icons/option.svg";
 
 import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { GetPlaylistTrack } from "../../utils/utils";
 
 const Playlist = () => {
+  const accesstoken = useSelector((state) => state.Auth.accessToken);
+  const [tracks, settracks] = useState([]);
+  const { id } = useParams();
+
+  const getTracks = async () => {
+    settracks(await GetPlaylistTrack(accesstoken, id));
+  };
+
+  useEffect(() => {
+    if (!accesstoken || !id) return;
+
+    getTracks();
+  }, [accesstoken, id]);
+
   return (
     <motion.main
       initial={fadeIn}
@@ -45,22 +62,27 @@ const Playlist = () => {
       </section>
 
       <section className="song-wrapper">
-        <article className="song">
-          <div className="stylebx">
-            <img src={list5} alt="" />
-            <img src={hearticon} alt="heart" />
-          </div>
-          <div className="stylebx">
-            <p>name of song</p>
-            <p>artist</p>
-          </div>
-          <div className="stylebx">
-            <p>4.35</p>
-            <button>
-              <img src={option} alt="option" />
-            </button>
-          </div>
-        </article>
+        {tracks &&
+          tracks.map((track, index) => {
+            return (
+              <article className="song" key={index}>
+                <div className="stylebx">
+                  <img src={track.image} alt="" />
+                  <img src={hearticon} alt="heart" />
+                </div>
+                <div className="stylebx">
+                  <p>{track.name}</p>
+                  <p>{track.artist}</p>
+                </div>
+                <div className="stylebx">
+                  <p>4.35</p>
+                  <button>
+                    <img src={option} alt="option" />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
       </section>
     </motion.main>
   );
