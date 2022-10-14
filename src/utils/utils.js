@@ -39,15 +39,24 @@ export async function GetFeaturedList(accesstoken) {
 
 export async function GetPlaylistTrack(accessToken, playlistID) {
   spotifyApi.setAccessToken(accessToken);
+  const res = await spotifyApi.getPlaylist(playlistID);
 
-  const res = await spotifyApi.getPlaylistTracks(playlistID);
-  console.log(res.body.items);
+  console.log(res.body.tracks.items[0].track);
 
-  return res.body.items.map((track) => {
+  const tracks = res.body.tracks.items.map((track) => {
     return {
       artist: track.track.artists[0].name,
       name: track.track.name,
       image: track.track.album.images[0].url,
+      trackurl: track.track.preview_url,
     };
   });
+
+  return {
+    name: res.body.name,
+    description: res.body.description,
+    tracks: tracks,
+    image: res.body.images[0].url,
+    total: res.body.tracks.total,
+  };
 }

@@ -9,18 +9,37 @@ import option from "../../images/icons/option.svg";
 
 import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { GetPlaylistTrack } from "../../utils/utils";
+import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Playlist = () => {
   const accesstoken = useSelector((state) => state.Auth.accessToken);
   const [tracks, settracks] = useState([]);
+  const [PlaylistData, setPlaylistData] = useState([]);
+
+  const [playingtrack, setplayingtrack] = useState([]);
+
+  const disptach = useDispatch();
+  console.log(useSelector((state) => state.Song.CurrentPlaying));
+
   const { id } = useParams();
 
   const getTracks = async () => {
-    settracks(await GetPlaylistTrack(accesstoken, id));
+    setPlaylistData(await GetPlaylistTrack(accesstoken, id));
   };
+
+  useEffect(() => {
+    if (!playingtrack) return;
+
+    console.log(playingtrack);
+    disptach(SetCurrentPlaying(playingtrack));
+  }, [playingtrack]);
+
+  useEffect(() => {
+    settracks(PlaylistData.tracks);
+  }, [PlaylistData]);
 
   useEffect(() => {
     if (!accesstoken || !id) return;
@@ -36,15 +55,14 @@ const Playlist = () => {
       className="playlist-page"
     >
       <section className="playlist-bg">
+        {/* <img src={PlaylistData.image} alt="" /> */}
         <Search />
         <section className="playlist-wrapper">
-          <img src={list5} alt="" />
+          <img src={PlaylistData.image} alt="" />
           <article className="playlist-info">
-            <h2>tommorow tunes</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ea.
-            </p>
-            <p>64 songs</p>
+            <h2>{PlaylistData.name}</h2>
+            <p>{PlaylistData.description}</p>
+            <p>{PlaylistData.total}</p>
             <div className="options">
               <button>
                 <img src={playicon} alt="play" /> play all
@@ -65,7 +83,13 @@ const Playlist = () => {
         {tracks &&
           tracks.map((track, index) => {
             return (
-              <article className="song" key={index}>
+              <article
+                className="song"
+                key={index}
+                onClick={() => {
+                  setplayingtrack(track.trackurl);
+                }}
+              >
                 <div className="stylebx">
                   <img src={track.image} alt="" />
                   <img src={hearticon} alt="heart" />
