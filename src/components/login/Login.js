@@ -1,11 +1,27 @@
 import React from "react";
 
-const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`;
-
 const Login = () => {
+  const handleClick = async () => {
+    const scope = [
+      "user-read-private",
+      "user-read-email",
+      "user-modify-playback-state",
+      "user-read-playback-state",
+      "user-read-currently-playing",
+      "user-read-recently-played",
+      "user-top-read",
+    ];
+
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${
+      process.env.REACT_APP_CLIENT_ID
+    }&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}&scope=${scope.join(
+      " "
+    )}&response_type=token&show_dialog=true`;
+  };
+
   return (
     <div>
-      <a href={AUTH_URL}>Login plz</a>
+      <button onClick={handleClick}>Connect Spotify</button>
     </div>
   );
 };
