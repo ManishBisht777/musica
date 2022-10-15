@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     if (!code) return;
     dispatch(getCredentails(code));
-  }, [code]);
+  }, [dispatch]);
 
   return code ? (
     <>

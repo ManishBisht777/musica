@@ -32,6 +32,7 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+  max-width: 15rem;
 
   article {
     position: absolute;
@@ -76,9 +77,6 @@
   }
 
   .collection-item {
-    img {
-      width: 9rem;
-      height: 9rem;
-    }
+    max-width: 8rem;
   }
 }

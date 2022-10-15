@@ -1,35 +1,46 @@
 import React from "react";
-// import song from "../../song/song.mp3";
-import list1 from "../../images/list1.png";
 import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
 import volume from "../../images/icons/volume.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SongUtil from "./SongUtil";
-
-// import SpotifyPlayer from "react-spotify-player";
-
-{
-  /* <SpotifyPlayer uri="spotify:album:6AJaDEafyyyWWXHZQtcFGe" theme="black" />; */
-}
+import { NextSong } from "../../utils/utils";
+import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Songbar = () => {
-  const trackurl = useSelector((state) => state.Song.CurrentPlaying);
+  const {
+    CurrentPlayingUrl,
+    CurrentPlayingImg,
+    CurrentPlayingName,
+    CurrentPlayingArtist,
+    CurrentPlayingArtistID,
+  } = useSelector((state) => state.Song);
 
-  const { curTime, duration, playing, setPlaying, setClickedTime } = SongUtil();
+  const dispatch = useDispatch();
+
+  const accesstoken = useSelector((state) => state.Auth.accessToken);
+  // const { curTime, duration, playing, setPlaying, setClickedTime } = SongUtil();
+
+  const { playing, setPlaying } = SongUtil();
+
+  const nextsong = async () => {
+    const newsong = await NextSong(accesstoken, CurrentPlayingArtistID);
+
+    dispatch(SetCurrentPlaying(newsong));
+  };
 
   return (
     <>
-      {trackurl ? (
+      {CurrentPlayingUrl ? (
         <div className="songbar">
-          <audio id="Song" src={trackurl} controls></audio>
+          <audio id="Song" src={CurrentPlayingUrl} controls></audio>
           <article className="current-song">
-            <img src={list1} alt="list" />
+            <img src={CurrentPlayingImg} alt="list" />
             <article>
-              <h2>season in</h2>
-              <p>artist</p>
+              <h2>{CurrentPlayingName}</h2>
+              <p>{CurrentPlayingArtist}</p>
             </article>
           </article>
           <div className="audio-box">
@@ -56,7 +67,11 @@ const Songbar = () => {
                   </button>
                 )}
               </div>
-              <button>
+              <button
+                onClick={() => {
+                  nextsong();
+                }}
+              >
                 <img src={nexticon} alt="next" />
               </button>
             </div>

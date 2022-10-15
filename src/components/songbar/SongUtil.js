@@ -37,7 +37,7 @@ function SongUtil() {
       audio.removeEventListener("loadeddata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
     };
-  });
+  }, [playing, clickedTime, curTime]);
 
   return {
     curTime,

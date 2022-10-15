@@ -69,6 +69,10 @@ body {
   color: #facd66;
 }
 
+#Song {
+  display: none;
+}
+
 .songbar {
   position: fixed;
   bottom: 0;
@@ -91,6 +95,11 @@ body {
   display: flex;
   gap: 1rem;
   width: 20%;
+}
+.current-song img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.3rem;
 }
 .current-song article {
   display: flex;
@@ -477,6 +486,7 @@ article {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+  max-width: 15rem;
 }
 .collection-item article {
   position: absolute;
@@ -512,9 +522,8 @@ article {
   .filter button {
     font-size: 1rem;
   }
-  .collection-item img {
-    width: 9rem;
-    height: 9rem;
+  .collection-item {
+    max-width: 8rem;
   }
 }
 .playlist-page {

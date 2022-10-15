@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Search from "../../components/searchbar/Search";
-import list5 from "../../images/list5.png";
 
 import playicon from "../../images/icons/play.svg";
 import hearticon from "../../images/icons/heart.svg";
@@ -11,7 +10,7 @@ import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { GetPlaylistTrack } from "../../utils/utils";
+import { GetPlaylistTrack, SavePlaylist } from "../../utils/utils";
 import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Playlist = () => {
@@ -26,16 +25,25 @@ const Playlist = () => {
 
   const { id } = useParams();
 
-  const getTracks = async () => {
-    setPlaylistData(await GetPlaylistTrack(accesstoken, id));
+  const AddToCollection = () => {
+    SavePlaylist(id);
   };
 
   useEffect(() => {
     if (!playingtrack) return;
 
     console.log(playingtrack);
-    disptach(SetCurrentPlaying(playingtrack));
-  }, [playingtrack]);
+
+    const trackinfo = {
+      trackurl: playingtrack.trackurl,
+      name: playingtrack.name,
+      artist: playingtrack.artist,
+      image: playingtrack.image,
+      artistid: playingtrack.artistid,
+    };
+
+    disptach(SetCurrentPlaying(trackinfo));
+  }, [playingtrack, disptach]);
 
   useEffect(() => {
     settracks(PlaylistData.tracks);
@@ -43,6 +51,10 @@ const Playlist = () => {
 
   useEffect(() => {
     if (!accesstoken || !id) return;
+
+    const getTracks = async () => {
+      setPlaylistData(await GetPlaylistTrack(accesstoken, id));
+    };
 
     getTracks();
   }, [accesstoken, id]);
@@ -67,7 +79,11 @@ const Playlist = () => {
               <button>
                 <img src={playicon} alt="play" /> play all
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  AddToCollection();
+                }}
+              >
                 <img src={collectionicon} alt="collection" />
                 add to collection
               </button>
@@ -81,32 +97,36 @@ const Playlist = () => {
 
       <section className="song-wrapper">
         {tracks &&
-          tracks.map((track, index) => {
-            return (
-              <article
-                className="song"
-                key={index}
-                onClick={() => {
-                  setplayingtrack(track.trackurl);
-                }}
-              >
-                <div className="stylebx">
-                  <img src={track.image} alt="" />
-                  <img src={hearticon} alt="heart" />
-                </div>
-                <div className="stylebx">
-                  <p>{track.name}</p>
-                  <p>{track.artist}</p>
-                </div>
-                <div className="stylebx">
-                  <p>4.35</p>
-                  <button>
-                    <img src={option} alt="option" />
-                  </button>
-                </div>
-              </article>
-            );
-          })}
+          tracks
+            .filter((track) => {
+              return track.trackurl != null;
+            })
+            .map((track, index) => {
+              return (
+                <article
+                  className="song"
+                  key={index}
+                  onClick={() => {
+                    setplayingtrack(track);
+                  }}
+                >
+                  <div className="stylebx">
+                    <img src={track.image} alt="" />
+                    <img src={hearticon} alt="heart" />
+                  </div>
+                  <div className="stylebx">
+                    <p>{track.name}</p>
+                    <p>{track.artist}</p>
+                  </div>
+                  <div className="stylebx">
+                    <p>4.35</p>
+                    <button>
+                      <img src={option} alt="option" />
+                    </button>
+                  </div>
+                </article>
+              );
+            })}
       </section>
     </motion.main>
   );

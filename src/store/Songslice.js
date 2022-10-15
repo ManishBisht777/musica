@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  CurrentPlaying: "",
+  CurrentPlayingUrl: "",
+  CurrentPlayingImg: "",
+  CurrentPlayingName: "",
+  CurrentPlayingArtist: "",
+  CurrentPlayingArtistID: "",
 };
 
 export const Songslice = createSlice({
@@ -10,7 +14,11 @@ export const Songslice = createSlice({
 
   reducers: {
     SetCurrentPlaying: (state, action) => {
-      state.CurrentPlaying = action.payload;
+      state.CurrentPlayingName = action.payload.name;
+      state.CurrentPlayingImg = action.payload.image;
+      state.CurrentPlayingArtist = action.payload.artist;
+      state.CurrentPlayingUrl = action.payload.trackurl;
+      state.CurrentPlayingArtistID = action.payload.artistid;
     },
   },
 });

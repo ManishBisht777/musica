@@ -8,7 +8,6 @@ import heroimg from "../../images/hero.svg";
 
 //dependency import
 
-import useAuth from "../../useAuth";
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -16,37 +15,35 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Search from "../../components/searchbar/Search";
 import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
-import SpotifyWebApi from "spotify-web-api-node";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // swiper css impirt
 import "swiper/css";
-import { GetFeaturedList, GetNewReleases } from "../../utils/utils";
+import { GetFeaturedList, GetNewReleases, GetUser } from "../../utils/utils";
+import { setUser } from "../../store/Authslice";
 
 // initilize spotify client
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: "5bcbd8541e76465481838de8f049a1fc",
-});
 
 const Home = () => {
   const [newRelease, setnewRelease] = useState([]);
   const [FeaturedPlaylist, setFeaturedPlaylist] = useState([]);
+  const dispatch = useDispatch();
 
   const accesstoken = useSelector((state) => state.Auth.accessToken);
 
-  const getdata = async () => {
-    setnewRelease(await GetNewReleases(accesstoken));
-    setFeaturedPlaylist(await GetFeaturedList(accesstoken));
-  };
-
   useEffect(() => {
     if (!accesstoken) return;
-    spotifyApi.setAccessToken(accesstoken);
+
+    const getdata = async () => {
+      setnewRelease(await GetNewReleases(accesstoken));
+      setFeaturedPlaylist(await GetFeaturedList(accesstoken));
+
+      dispatch(setUser(await GetUser(accesstoken)));
+    };
 
     getdata();
-  }, [accesstoken]);
+  }, [accesstoken, dispatch]);
 
   return (
     <motion.main

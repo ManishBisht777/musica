@@ -5,6 +5,8 @@ const initialState = {
   accessToken: "",
   refreshToken: "",
   expiresIn: "",
+  id: "",
+  name: "",
 };
 
 export const getCredentails = createAsyncThunk("getCredentials", (code) => {
@@ -35,14 +37,13 @@ export const AuthSlice = createSlice({
   },
 
   reducers: {
-    setCredentials: (state, action) => {
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.expiresIn = action.payload.expiresIn;
+    setUser: (state, action) => {
+      state.id = action.payload.id;
+      state.name = action.payload.name;
     },
   },
 });
 
-export const { setCredentials } = AuthSlice.actions;
+export const { setUser } = AuthSlice.actions;
 
 export default AuthSlice.reducer;

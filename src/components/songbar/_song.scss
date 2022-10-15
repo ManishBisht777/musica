@@ -1,5 +1,9 @@
 @use "../../scss/assets" as *;
 
+#Song {
+  display: none;
+}
+
 .songbar {
   position: fixed;
   bottom: 0;
@@ -23,6 +27,12 @@
   display: flex;
   gap: 1rem;
   width: 20%;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.3rem;
+  }
 
   article {
     display: flex;
