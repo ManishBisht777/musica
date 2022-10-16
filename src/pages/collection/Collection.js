@@ -85,19 +85,20 @@ const Collection = () => {
       <div className="liked">
         <h2>Liked playlist</h2>
         <div className="collection-list">
-          {likedPlaylist.map((playlist, index) => {
-            return (
-              <Link to={`/browse/playlist/${playlist.id}`} key={index}>
-                <article className="collection-item">
-                  <img src={playlist.image} alt={playlist.name} />
-                  <article>
-                    <h2>{playlist.name}</h2>
-                    <p>{playlist.artist}</p>
+          {likedPlaylist &&
+            likedPlaylist.map((playlist, index) => {
+              return (
+                <Link to={`/browse/playlist/${playlist.id}`} key={index}>
+                  <article className="collection-item">
+                    <img src={playlist.image} alt={playlist.name} />
+                    <article>
+                      <h2>{playlist.name}</h2>
+                      <p>{playlist.artist}</p>
+                    </article>
                   </article>
-                </article>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
         </div>
       </div>
 
