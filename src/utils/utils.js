@@ -94,6 +94,7 @@ export async function GetPlaylistTrack(accessToken, playlistID) {
       image: track.track.album.images[0].url,
       trackurl: track.track.preview_url,
       duration: track.track.duration_ms,
+      id: track.track.id,
     };
   });
 
@@ -178,10 +179,27 @@ export async function SavePlaylist(playlistID) {
   localStorage.setItem("musica:collection", JSON.stringify(collection));
 }
 
+function checkDuplicate(playlist, id) {
+  for (let i = 0; i < playlist.length; i++) if (playlist[i] === id) return true;
+  return false;
+}
+
+export async function like(id, type) {
+  var localdata = [];
+  localdata = JSON.parse(localStorage.getItem(`musica:like:${type}`)) || [];
+  console.log(localdata);
+
+  if (!checkDuplicate(localdata, id)) localdata.push(id);
+  localStorage.setItem(`musica:like:${type}`, JSON.stringify(localdata));
+}
+
 export async function GetSavedPlaylist(accessToken) {
   spotifyApi.setAccessToken(accessToken);
 
-  const ids = await JSON.parse(localStorage.getItem("musica:collection"));
+  const ids =
+    (await JSON.parse(localStorage.getItem("musica:collection"))) || [];
+
+  if (ids.length === 0) return;
 
   const listOfPromises = Promise.all(
     ids.map(async (id) => {
@@ -191,6 +209,52 @@ export async function GetSavedPlaylist(accessToken) {
         image: playlist.body.images[0].url,
         artist: playlist.body.tracks.items[0].track.artists[0].name,
         id: id,
+      };
+    })
+  );
+
+  return await listOfPromises;
+}
+
+export async function GetLikedPlaylist(accessToken) {
+  spotifyApi.setAccessToken(accessToken);
+
+  const ids =
+    (await JSON.parse(localStorage.getItem("musica:like:playlist"))) || [];
+  if (ids.length === 0) return;
+
+  const listOfPromises = Promise.all(
+    ids.map(async (id) => {
+      const playlist = await spotifyApi.getPlaylist(id);
+      return {
+        name: playlist.body.name,
+        image: playlist.body.images[0].url,
+        artist: playlist.body.tracks.items[0].track.artists[0].name,
+        id: id,
+      };
+    })
+  );
+
+  return await listOfPromises;
+}
+export async function GetLikedTracks(accessToken) {
+  spotifyApi.setAccessToken(accessToken);
+
+  const ids =
+    (await JSON.parse(localStorage.getItem("musica:like:track"))) || [];
+
+  if (ids.length === 0) return;
+
+  const listOfPromises = Promise.all(
+    ids.map(async (id) => {
+      const track = await spotifyApi.getTrack(id);
+      return {
+        artist: track.body.artists[0].name,
+        artistid: track.body.artists[0].id,
+        name: track.body.name,
+        image: track.body.album.images[0].url,
+        trackurl: track.body.preview_url,
+        duration: track.body.duration_ms,
       };
     })
   );

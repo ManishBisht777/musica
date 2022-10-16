@@ -3,6 +3,7 @@
 .collection {
   width: 100%;
   padding-left: 9rem;
+  padding-bottom: 8rem;
 }
 
 .filter {
@@ -56,6 +57,24 @@
     p {
       font-size: 0.875rem;
     }
+  }
+}
+
+.liked {
+  h2 {
+    color: $white;
+    font-size: 1.25rem;
+    margin: 1rem 0;
+    text-transform: capitalize;
+  }
+}
+
+.liked .song {
+  justify-content: flex-start;
+  gap: 2rem;
+  .stylebx {
+    width: auto;
+    gap: 2rem;
   }
 }
 

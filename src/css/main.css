@@ -462,6 +462,7 @@ article {
 .collection {
   width: 100%;
   padding-left: 9rem;
+  padding-bottom: 8rem;
 }
 
 .filter {
@@ -512,6 +513,22 @@ article {
 }
 .collection-item article p {
   font-size: 0.875rem;
+}
+
+.liked h2 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  text-transform: capitalize;
+}
+
+.liked .song {
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.liked .song .stylebx {
+  width: auto;
+  gap: 2rem;
 }
 
 @media screen and (max-width: 900px) {

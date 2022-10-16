@@ -13,13 +13,13 @@ import { useParams } from "react-router-dom";
 import {
   GetAlbumTracks,
   GetPlaylistTrack,
+  like,
   SavePlaylist,
 } from "../../utils/utils";
 import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Playlist = () => {
   const accesstoken = useSelector((state) => state.Auth.accessToken);
-  // const CurrentPlaying = useSelector((state) => state.Song.CurrentPlaying);
 
   const [tracks, settracks] = useState([]);
   const [PlaylistData, setPlaylistData] = useState([]);
@@ -30,8 +30,17 @@ const Playlist = () => {
 
   const { id, type } = useParams();
 
+  const likeplaylist = "playlist";
+  const liketrack = "track";
+  const likealnum = "album";
+
   const AddToCollection = () => {
     SavePlaylist(id);
+  };
+
+  const handleLike = (typeid, type) => {
+    console.log(type, id);
+    like(typeid, type);
   };
 
   useEffect(() => {
@@ -51,6 +60,8 @@ const Playlist = () => {
   useEffect(() => {
     settracks(PlaylistData.tracks);
   }, [PlaylistData]);
+
+  console.log(PlaylistData.tracks);
 
   useEffect(() => {
     if (!accesstoken || !id || !type) return;
@@ -98,7 +109,12 @@ const Playlist = () => {
                 <img src={collectionicon} alt="collection" />
                 add to collection
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  if (type === "album") handleLike(id, likealnum);
+                  else if (type === "playlist") handleLike(id, likeplaylist);
+                }}
+              >
                 <img src={hearticon} alt="heart" />
               </button>
             </div>
@@ -131,11 +147,17 @@ const Playlist = () => {
                 >
                   <div className="stylebx">
                     <img src={track.image} alt="" />
-                    <img src={hearticon} alt="heart" />
+                    <button
+                      onClick={(e) => {
+                        handleLike(track.id, liketrack);
+                      }}
+                    >
+                      <img src={hearticon} alt="heart" />
+                    </button>
                   </div>
                   <div className="stylebx">
                     <p>{track.name}</p>
-                    <p>{track.artist}</p>
+                    <p className="artist_name">{track.artist}</p>
                   </div>
                   <div className="stylebx">
                     <p>{msToMinutesAndSeconds(track.duration)}</p>
