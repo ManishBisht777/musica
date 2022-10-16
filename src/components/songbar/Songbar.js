@@ -32,9 +32,9 @@ const Songbar = () => {
   };
 
   return (
-    <>
+    <div className="songbar">
       {CurrentPlayingUrl ? (
-        <div className="songbar">
+        <>
           <audio id="Song" src={CurrentPlayingUrl} controls></audio>
           <article className="current-song">
             <img src={CurrentPlayingImg} alt="list" />
@@ -93,13 +93,13 @@ const Songbar = () => {
               aria-label="volume-bar"
             />
           </div>
-        </div>
+        </>
       ) : (
         <>
           <p>no song chosen</p>
         </>
       )}
-    </>
+    </div>
   );
 };
 

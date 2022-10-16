@@ -3,7 +3,7 @@
 .home {
   width: 100%;
   padding-left: 10rem;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
 }
 .hamburger {
   display: none;
@@ -96,12 +96,17 @@ article {
 .new-release {
   position: relative;
   z-index: 0;
+  margin-top: 4rem;
 
   h2 {
     color: $white;
     margin: 1rem 0;
     text-transform: capitalize;
   }
+}
+
+.new-release:nth-child(1) {
+  margin-top: 0rem;
 }
 
 .release-box {

@@ -33,7 +33,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/collection" element={<Collection />} />
-              <Route path="/playlist/:id" element={<Playlist />} />
+              <Route path="/playlist/:type/:id" element={<Playlist />} />
             </Routes>
           </AnimatePresence>
         </>

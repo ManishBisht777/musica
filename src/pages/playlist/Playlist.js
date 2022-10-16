@@ -10,29 +10,32 @@ import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { GetPlaylistTrack, SavePlaylist } from "../../utils/utils";
+import {
+  GetAlbumTracks,
+  GetPlaylistTrack,
+  SavePlaylist,
+} from "../../utils/utils";
 import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Playlist = () => {
   const accesstoken = useSelector((state) => state.Auth.accessToken);
+  const CurrentPlaying = useSelector((state) => state.Song.CurrentPlaying);
+
   const [tracks, settracks] = useState([]);
   const [PlaylistData, setPlaylistData] = useState([]);
 
   const [playingtrack, setplayingtrack] = useState([]);
 
   const disptach = useDispatch();
-  console.log(useSelector((state) => state.Song.CurrentPlaying));
 
-  const { id } = useParams();
+  const { id, type } = useParams();
 
   const AddToCollection = () => {
     SavePlaylist(id);
   };
 
   useEffect(() => {
-    if (!playingtrack) return;
-
-    console.log(playingtrack);
+    if (playingtrack.length === 0) return;
 
     const trackinfo = {
       trackurl: playingtrack.trackurl,
@@ -50,14 +53,23 @@ const Playlist = () => {
   }, [PlaylistData]);
 
   useEffect(() => {
-    if (!accesstoken || !id) return;
+    if (!accesstoken || !id || !type) return;
 
     const getTracks = async () => {
-      setPlaylistData(await GetPlaylistTrack(accesstoken, id));
+      if (type === "playlist")
+        setPlaylistData(await GetPlaylistTrack(accesstoken, id));
+      else if (type === "album")
+        setPlaylistData(await GetAlbumTracks(accesstoken, id));
     };
 
     getTracks();
-  }, [accesstoken, id]);
+  }, [accesstoken, id, type]);
+
+  const msToMinutesAndSeconds = (ms) => {
+    var minutes = Math.floor(ms / 60000);
+    var seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  };
 
   return (
     <motion.main
@@ -119,7 +131,7 @@ const Playlist = () => {
                     <p>{track.artist}</p>
                   </div>
                   <div className="stylebx">
-                    <p>4.35</p>
+                    <p>{msToMinutesAndSeconds(track.duration)}</p>
                     <button>
                       <img src={option} alt="option" />
                     </button>

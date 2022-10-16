@@ -314,7 +314,7 @@ nav ul li svg {
 .home {
   width: 100%;
   padding-left: 10rem;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
 }
 
 .hamburger {
@@ -403,11 +403,16 @@ article {
 .new-release {
   position: relative;
   z-index: 0;
+  margin-top: 4rem;
 }
 .new-release h2 {
   color: #fff;
   margin: 1rem 0;
   text-transform: capitalize;
+}
+
+.new-release:nth-child(1) {
+  margin-top: 0rem;
 }
 
 .release-box {
@@ -480,13 +485,14 @@ article {
   gap: 1rem;
   margin-top: 2rem;
   position: relative;
+  flex-wrap: wrap;
 }
 
 .collection-item {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  max-width: 15rem;
+  width: 10rem;
 }
 .collection-item article {
   position: absolute;
@@ -523,13 +529,14 @@ article {
     font-size: 1rem;
   }
   .collection-item {
-    max-width: 8rem;
+    width: 7rem;
   }
 }
 .playlist-page {
   padding-left: 9rem;
   width: 100%;
   min-height: 100vh;
+  padding-bottom: 10rem;
   background: url("/public/images/collectionbg.svg") no-repeat center center/cover;
 }
 

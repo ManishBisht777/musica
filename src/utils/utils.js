@@ -7,7 +7,11 @@ const spotifyApi = new SpotifyWebApi({
 export async function GetNewReleases(accesstoken) {
   spotifyApi.setAccessToken(accesstoken);
 
-  const res = await spotifyApi.getNewReleases();
+  const res = await spotifyApi.getNewReleases({
+    limit: 3,
+    country: "SE",
+    offset: 3,
+  });
 
   return res.body.albums.items.map((album) => {
     const smallestAlbumImage = album.images.reduce((smallest, image) => {
@@ -37,6 +41,47 @@ export async function GetFeaturedList(accesstoken) {
   });
 }
 
+export async function GetCategories(accessToken) {
+  const country = await fetch(
+    "https://api.ipregistry.co/?key=rx4j7s8viigcvhbx"
+  ).then(function (response) {
+    return response.json();
+  });
+
+  spotifyApi.setAccessToken(accessToken);
+
+  const res = await spotifyApi.getCategories({
+    offset: 0,
+    limit: 10,
+    country: country.location.country.code,
+  });
+
+  return res.body.categories.items;
+}
+
+export async function GetCategoryPlaylist(accessToken) {
+  const country = await fetch(
+    "https://api.ipregistry.co/?key=rx4j7s8viigcvhbx"
+  ).then(function (response) {
+    return response.json();
+  });
+
+  spotifyApi.setAccessToken(accessToken);
+
+  const res = await spotifyApi.getPlaylistsForCategory("toplists", {
+    country: country.location.country.code,
+  });
+
+  const playlist = res.body.playlists.items.map((playlist) => {
+    return {
+      image: playlist.images[0].url,
+      playlistid: playlist.id,
+    };
+  });
+
+  return playlist;
+}
+
 export async function GetPlaylistTrack(accessToken, playlistID) {
   spotifyApi.setAccessToken(accessToken);
   const res = await spotifyApi.getPlaylist(playlistID);
@@ -48,6 +93,7 @@ export async function GetPlaylistTrack(accessToken, playlistID) {
       name: track.track.name,
       image: track.track.album.images[0].url,
       trackurl: track.track.preview_url,
+      duration: track.track.duration_ms,
     };
   });
 
@@ -56,6 +102,31 @@ export async function GetPlaylistTrack(accessToken, playlistID) {
     description: res.body.description,
     tracks: tracks,
     image: res.body.images[0].url,
+    total: res.body.tracks.total,
+  };
+}
+
+export async function GetAlbumTracks(accessToken, albumID) {
+  spotifyApi.setAccessToken(accessToken);
+
+  const res = await spotifyApi.getAlbum(albumID);
+
+  const albumimage = res.body.images[0].url;
+  const tracks = res.body.tracks.items.map((track) => {
+    return {
+      artist: track.artists[0].name,
+      artistid: track.artists[0].id,
+      name: track.name,
+      image: albumimage,
+      trackurl: track.preview_url,
+    };
+  });
+
+  return {
+    name: res.body.name,
+    description: res.body.album_type,
+    tracks: tracks,
+    image: albumimage,
     total: res.body.tracks.total,
   };
 }
@@ -96,7 +167,14 @@ export async function NextSong(accessToken, artistid) {
 export async function SavePlaylist(playlistID) {
   var collection = [];
   collection = JSON.parse(localStorage.getItem("musica:collection")) || [];
-  collection.push(playlistID);
+
+  let duplicate = false;
+  console.log(collection.length);
+  for (let i = 0; i < collection.length; i++) {
+    if (collection[i] === playlistID) duplicate = true;
+  }
+
+  if (!duplicate) collection.push(playlistID);
   localStorage.setItem("musica:collection", JSON.stringify(collection));
 }
 
