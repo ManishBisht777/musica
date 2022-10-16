@@ -20,9 +20,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleClick}>Connect Spotify</button>
-    </div>
+    <main className="login">
+      <button onClick={handleClick}>Click to see magic</button>
+    </main>
   );
 };
 
