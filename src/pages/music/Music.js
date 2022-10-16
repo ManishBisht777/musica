@@ -1,14 +1,8 @@
 import React from "react";
+import Coming from "../comingSoon/Coming";
 
 const Music = () => {
-  return (
-    <main>
-      <section>
-        <h3>music </h3>
-        <p>music page this is</p>
-      </section>
-    </main>
-  );
+  return <Coming />;
 };
 
 export default Music;
