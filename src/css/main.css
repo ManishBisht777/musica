@@ -629,12 +629,13 @@ article {
   justify-content: space-around;
   align-items: center;
 }
-.stylebx img:nth-child(2) {
+
+.stylebx:nth-child(3) img {
   width: 1rem;
   filter: invert(70%) sepia(65%) saturate(332%) hue-rotate(0deg) brightness(104%) contrast(96%);
 }
 
-.stylebx:nth-child(3) img {
+.stylebx button img {
   width: 1rem;
   filter: invert(70%) sepia(65%) saturate(332%) hue-rotate(0deg) brightness(104%) contrast(96%);
 }
