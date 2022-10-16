@@ -1,6 +1,10 @@
 @use "../../scss/assets" as *;
 
 .search {
+  position: relative;
+}
+
+.search_box {
   padding: 1rem 0rem;
   margin-top: 2rem;
   display: flex;
@@ -11,7 +15,7 @@
     background: transparent;
     border: none;
     color: $white;
-    width: 100%;
+    padding: 0.5rem 1rem;
   }
 
   svg {
@@ -22,4 +26,32 @@
       color: $yellow;
     }
   }
+}
+
+.search_song {
+  position: absolute;
+  overflow-y: auto;
+  background: $darkbg;
+  top: 4rem;
+  left: 0rem;
+  right: 0rem;
+  z-index: 1;
+}
+
+.search_song .song {
+  gap: 3rem;
+  justify-content: flex-start;
+}
+
+.search_song .stylebx {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.artist_name {
+  font-size: 0.875rem;
+  color: $yellow;
 }

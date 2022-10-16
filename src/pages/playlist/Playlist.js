@@ -78,15 +78,14 @@ const Playlist = () => {
       exit={exit}
       className="playlist-page"
     >
-      <section className="playlist-bg">
-        {/* <img src={PlaylistData.image} alt="" /> */}
+      <section>
         <Search />
         <section className="playlist-wrapper">
           <img src={PlaylistData.image} alt="" />
           <article className="playlist-info">
             <h2>{PlaylistData.name}</h2>
             <p>{PlaylistData.description}</p>
-            <p>{PlaylistData.total}</p>
+            <p>{PlaylistData.total} Songs</p>
             <div className="options">
               <button>
                 <img src={playicon} alt="play" /> play all
@@ -105,6 +104,14 @@ const Playlist = () => {
             </div>
           </article>
         </section>
+        <div
+          className="playlist_bg"
+          style={{
+            background: `url(${PlaylistData.image}) no-repeat center
+        center/cover`,
+            opacity: 0.1,
+          }}
+        ></div>
       </section>
 
       <section className="song-wrapper">

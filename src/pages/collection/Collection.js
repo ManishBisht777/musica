@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { exit, fadeIn, fadeOut } from "../../animation/animation";
 import { useSelector } from "react-redux";
 import { GetSavedPlaylist } from "../../utils/utils";
+import { Link } from "react-router-dom";
 
 const Collection = () => {
   const accesstoken = useSelector((state) => state.Auth.accessToken);
@@ -39,13 +40,15 @@ const Collection = () => {
         {collections &&
           collections.map((collection, index) => {
             return (
-              <article className="collection-item" key={index}>
-                <img src={collection.image} alt={collection.name} />
-                <article>
-                  <h2>{collection.name}</h2>
-                  <p>{collection.artist}</p>
+              <Link to={`/browse/playlist/${collection.id}`} key={index}>
+                <article className="collection-item">
+                  <img src={collection.image} alt={collection.name} />
+                  <article>
+                    <h2>{collection.name}</h2>
+                    <p>{collection.artist}</p>
+                  </article>
                 </article>
-              </article>
+              </Link>
             );
           })}
       </div>

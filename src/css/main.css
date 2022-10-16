@@ -49,23 +49,55 @@ body {
 }
 
 .search {
+  position: relative;
+}
+
+.search_box {
   padding: 1rem 0rem;
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
   align-items: center;
 }
-.search input {
+.search_box input {
   background: transparent;
   border: none;
   color: #fff;
-  width: 100%;
+  padding: 0.5rem 1rem;
 }
-.search svg {
+.search_box svg {
   color: #fff;
   font-size: 1.25rem;
 }
-.search svg:hover {
+.search_box svg:hover {
+  color: #facd66;
+}
+
+.search_song {
+  position: absolute;
+  overflow-y: auto;
+  background: #1a1e1f;
+  top: 4rem;
+  left: 0rem;
+  right: 0rem;
+  z-index: 1;
+}
+
+.search_song .song {
+  gap: 3rem;
+  justify-content: flex-start;
+}
+
+.search_song .stylebx {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.artist_name {
+  font-size: 0.875rem;
   color: #facd66;
 }
 
@@ -123,6 +155,24 @@ body {
   width: 100%;
 }
 
+.bar__progress {
+  flex: 1;
+  border-radius: 5px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bar__progress__knob {
+  position: relative;
+  height: 12px;
+  width: 12px;
+  border: 0.5rem solid white;
+  border-radius: 50%;
+  background-color: #facd66;
+}
+
 .playpause {
   background: #facd66;
   border-radius: 3rem;
@@ -156,57 +206,6 @@ body {
 .audio-controls button img {
   width: 2rem;
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(110%) contrast(103%);
-}
-
-input[type=range] {
-  position: relative;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  margin: 0;
-  padding: 0;
-  height: 0.5rem;
-  float: left;
-  outline: none;
-  background: #1a1e1f;
-  box-shadow: inset 0 0 0.1rem rgba(255, 255, 255, 0.2);
-  border-radius: 0.3rem;
-  overflow: hidden;
-}
-
-input[type=range]::-moz-range-thumb {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  border: 0.1rem solid #facd66;
-  background: #facd66;
-  background-clip: content-box;
-  padding: 0.2em;
-  cursor: pointer;
-  -moz-appearance: none;
-       appearance: none;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-          appearance: none;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  border: 0.1rem solid #facd66;
-  background: #facd66;
-  background-clip: content-box;
-  padding: 0.2em;
-  cursor: pointer;
-  box-shadow: 0 0 10rem #facd66;
-}
-
-input[type=range]::-moz-range-progress {
-  height: 0.5rem;
-  border-radius: 0.3rem;
-  background: #facd66;
-  -moz-appearance: none;
-       appearance: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -537,7 +536,15 @@ article {
   width: 100%;
   min-height: 100vh;
   padding-bottom: 10rem;
-  background: url("/public/images/collectionbg.svg") no-repeat center center/cover;
+}
+
+.playlist_bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .playlist-wrapper {

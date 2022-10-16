@@ -5,8 +5,15 @@
   width: 100%;
   min-height: 100vh;
   padding-bottom: 10rem;
-  background: url("/public/images/collectionbg.svg") no-repeat center
-    center/cover;
+}
+
+.playlist_bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .playlist-wrapper {

@@ -57,6 +57,24 @@
   }
 }
 
+.bar__progress {
+  flex: 1;
+  border-radius: 5px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bar__progress__knob {
+  position: relative;
+  height: 12px;
+  width: 12px;
+  border: 0.5rem solid white;
+  border-radius: 50%;
+  background-color: $yellow;
+}
+
 .playpause {
   background: $yellow;
   border-radius: 3rem;
@@ -97,52 +115,6 @@
         brightness(110%) contrast(103%);
     }
   }
-}
-
-input[type="range"] {
-  position: relative;
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  height: 0.5rem;
-  float: left;
-  outline: none;
-  background: $darkbg;
-  box-shadow: inset 0 0 0.1rem rgba(255, 255, 255, 0.2);
-  border-radius: 0.3rem;
-  overflow: hidden;
-}
-
-input[type="range"]::-moz-range-thumb {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  border: 0.1rem solid $yellow;
-  background: $yellow;
-  background-clip: content-box;
-  padding: 0.2em;
-  cursor: pointer;
-  appearance: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  border: 0.1rem solid $yellow;
-  background: $yellow;
-  background-clip: content-box;
-  padding: 0.2em;
-  cursor: pointer;
-  box-shadow: 0 0 10rem $yellow;
-}
-
-input[type="range"]::-moz-range-progress {
-  height: 0.5rem;
-  border-radius: 0.3rem;
-  background: $yellow;
-  appearance: none;
 }
 
 @media screen and (max-width: 600px) {

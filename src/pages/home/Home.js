@@ -69,7 +69,7 @@ const Home = () => {
               url = url.slice(url.indexOf("album:") + 6);
 
               return (
-                <Link to={`/playlist/album/${url}`} key={index}>
+                <Link to={`/browse/album/${url}`} key={index}>
                   <article className="playlist">
                     <img src={newalbum.albumUrl} alt={newalbum.title} />
                     <div className="playlistinfo">
@@ -112,7 +112,7 @@ const Home = () => {
               Topchart.map((chart, index) => {
                 return (
                   <SwiperSlide key={index}>
-                    <Link to={`/playlist/playlist/${chart.playlistid}`}>
+                    <Link to={`/browse/playlist/${chart.playlistid}`}>
                       <img src={chart.image} alt="playlist" loading="lazy" />
                     </Link>
                   </SwiperSlide>
@@ -187,7 +187,7 @@ const Home = () => {
 
                 return (
                   <SwiperSlide key={index}>
-                    <Link to={`/playlist/playlist/${url}`}>
+                    <Link to={`/browse/playlist/${url}`}>
                       <img
                         src={playlist.playlistUrl}
                         alt="playlist"

@@ -10,6 +10,8 @@ import Login from "./components/login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setToken } from "./store/Authslice";
+import Radio from "./pages/radio/Radio";
+import Music from "./pages/music/Music";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +35,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/collection" element={<Collection />} />
-              <Route path="/playlist/:type/:id" element={<Playlist />} />
+              <Route path="/browse/:type/:id" element={<Playlist />} />
+              <Route path="/radio" element={<Radio />} />
+              <Route path="/music" element={<Music />} />
             </Routes>
           </AnimatePresence>
         </>

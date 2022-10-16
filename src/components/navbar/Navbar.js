@@ -59,7 +59,7 @@ const Navbar = () => {
           <li>
             <Link
               aria-label="radio"
-              to="/"
+              to="/radio"
               onClick={() => {
                 settogglenav(!togglenav);
               }}
@@ -70,7 +70,7 @@ const Navbar = () => {
           <li>
             <Link
               aria-label="music"
-              to="/"
+              to="/music"
               onClick={() => {
                 settogglenav(!togglenav);
               }}

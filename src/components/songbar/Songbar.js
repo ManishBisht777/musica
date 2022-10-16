@@ -3,6 +3,7 @@ import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
 import volume from "../../images/icons/volume.svg";
+import pause from "../../images/icons/pause.svg";
 import { useDispatch, useSelector } from "react-redux";
 
 import SongUtil from "./SongUtil";
@@ -21,9 +22,35 @@ const Songbar = () => {
   const dispatch = useDispatch();
 
   const accesstoken = useSelector((state) => state.Auth.accessToken);
-  // const { curTime, duration, playing, setPlaying, setClickedTime } = SongUtil();
+  const { curTime, duration, playing, setPlaying, setClickedTime } = SongUtil();
 
-  const { playing, setPlaying } = SongUtil();
+  const curPercentage = (curTime / duration) * 100;
+
+  function calcClickedTime(e) {
+    const clickPositionInPage = e.pageX;
+    const bar = document.querySelector(".bar__progress");
+    const barStart = bar.getBoundingClientRect().left + window.scrollX;
+    const barWidth = bar.offsetWidth;
+    const clickPositionInBar = clickPositionInPage - barStart;
+    const timePerPixel = duration / barWidth;
+    return timePerPixel * clickPositionInBar;
+  }
+
+  const onTimeUpdate = (time) => setClickedTime(time);
+
+  function handleTimeDrag(e) {
+    onTimeUpdate(calcClickedTime(e));
+
+    const updateTimeOnMove = (eMove) => {
+      onTimeUpdate(calcClickedTime(eMove));
+    };
+
+    document.addEventListener("mousemove", updateTimeOnMove);
+
+    document.addEventListener("mouseup", () => {
+      document.removeEventListener("mousemove", updateTimeOnMove);
+    });
+  }
 
   const nextsong = async () => {
     const newsong = await NextSong(accesstoken, CurrentPlayingArtistID);
@@ -55,7 +82,7 @@ const Songbar = () => {
                       setPlaying(false);
                     }}
                   >
-                    stop
+                    <img src={pause} alt="pause" aria-label="pause-music" />
                   </button>
                 ) : (
                   <button
@@ -63,7 +90,7 @@ const Songbar = () => {
                       setPlaying(true);
                     }}
                   >
-                    <img src={playicon} alt="play" />
+                    <img src={playicon} alt="play" aria-label="play-music" />
                   </button>
                 )}
               </div>
@@ -76,12 +103,18 @@ const Songbar = () => {
               </button>
             </div>
             <div className="audio">
-              <input
-                type="range"
-                id="seek-slider"
-                max="100"
-                aria-label="song"
-              />
+              <div
+                className="bar__progress"
+                style={{
+                  background: `linear-gradient(to right, #facd66 ${curPercentage}%, white 0)`,
+                }}
+                onMouseDown={(e) => handleTimeDrag(e)}
+              >
+                <span
+                  className="bar__progress__knob"
+                  style={{ left: `${curPercentage - 2}%` }}
+                />
+              </div>
             </div>
           </div>
           <div className="volume-output">

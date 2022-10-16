@@ -190,9 +190,37 @@ export async function GetSavedPlaylist(accessToken) {
         name: playlist.body.name,
         image: playlist.body.images[0].url,
         artist: playlist.body.tracks.items[0].track.artists[0].name,
+        id: id,
       };
     })
   );
 
   return await listOfPromises;
+}
+
+export async function SearchTracks(accessToken, search, cancle) {
+  if (cancle) return;
+
+  spotifyApi.setAccessToken(accessToken);
+
+  const res = await spotifyApi.searchTracks(search, { limit: 10 });
+
+  return res.body.tracks.items
+    .filter((track) => {
+      return track.preview_url != null;
+    })
+    .map((track) => {
+      const smallest = track.album.images.reduce((smallest, image) => {
+        if (image.height < smallest.height) return image;
+        return smallest;
+      }, track.album.images[0]);
+
+      return {
+        artist: track.artists[0].name,
+        artistid: track.artists[0].id,
+        image: smallest.url,
+        url: track.preview_url,
+        name: track.name,
+      };
+    });
 }
