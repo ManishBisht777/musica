@@ -19,7 +19,7 @@ import { SetCurrentPlaying } from "../../store/Songslice";
 
 const Playlist = () => {
   const accesstoken = useSelector((state) => state.Auth.accessToken);
-  const CurrentPlaying = useSelector((state) => state.Song.CurrentPlaying);
+  // const CurrentPlaying = useSelector((state) => state.Song.CurrentPlaying);
 
   const [tracks, settracks] = useState([]);
   const [PlaylistData, setPlaylistData] = useState([]);
