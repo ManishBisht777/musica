@@ -93,7 +93,7 @@ const Songbar = () => {
 
     handleNextSong();
     return () => (cancel = true);
-  }, [curPercentage, nexticon]);
+  }, [curPercentage, nextsong]);
 
   return (
     <div className="songbar">
