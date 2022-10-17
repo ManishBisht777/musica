@@ -87,13 +87,14 @@ const Songbar = () => {
     let cancel = false;
     if (curPercentage < 100) return;
 
-    const handleNextSong = () => {
-      if (!cancel) nextsong();
-    };
+    if (!cancel) {
+      console.log("called");
+      nextsong();
+    }
 
-    handleNextSong();
     return () => (cancel = true);
-  }, [curPercentage, nextsong]);
+    //eslint-disable-next-line
+  }, [curPercentage]);
 
   return (
     <div className="songbar">
