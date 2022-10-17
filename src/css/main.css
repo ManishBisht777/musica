@@ -192,7 +192,7 @@ body {
   gap: 1rem;
   align-items: center;
 }
-.volume-output img {
+.volume-output button img {
   width: 1.5rem;
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(110%) contrast(103%);
 }

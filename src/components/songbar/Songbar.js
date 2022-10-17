@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
@@ -83,19 +83,6 @@ const Songbar = () => {
     dispatch(SetCurrentPlaying(newsong));
   };
 
-  useEffect(() => {
-    let cancel = false;
-    if (curPercentage < 100) return;
-
-    if (!cancel) {
-      console.log("called");
-      nextsong();
-    }
-
-    return () => (cancel = true);
-    //eslint-disable-next-line
-  }, [curPercentage]);
-
   return (
     <div className="songbar">
       {CurrentPlayingUrl ? (
@@ -160,7 +147,9 @@ const Songbar = () => {
             </div>
           </div>
           <div className="volume-output">
-            <img src={volume} alt="volume" />
+            <button id="mute">
+              <img src={volume} alt="volume" />
+            </button>
             <input
               type="range"
               id="volume-slider"

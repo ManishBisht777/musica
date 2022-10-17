@@ -8,6 +8,8 @@ function SongUtil() {
 
   useEffect(() => {
     const audio = document.getElementById("Song");
+    const volume = document.getElementById("volume-slider");
+    const mutevol = document.getElementById("mute");
 
     if (!audio) return;
 
@@ -16,6 +18,16 @@ function SongUtil() {
       setDuration(audio.duration);
       setCurTime(audio.currentTime);
     };
+
+    volume.addEventListener("input", (e) => {
+      const value = e.target.value;
+      audio.volume = value / 100;
+    });
+
+    mutevol.addEventListener("click", () => {
+      if (audio.volume === 0) audio.volume = 1;
+      else audio.value = 0;
+    });
 
     const setAudioTime = () => setCurTime(audio.currentTime);
 
@@ -37,7 +49,7 @@ function SongUtil() {
       audio.removeEventListener("loadeddata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
     };
-  }, [playing, clickedTime, curTime]);
+  }, [playing, clickedTime, curTime, duration]);
 
   return {
     curTime,
