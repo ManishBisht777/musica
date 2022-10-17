@@ -86,17 +86,21 @@ export async function GetPlaylistTrack(accessToken, playlistID) {
   spotifyApi.setAccessToken(accessToken);
   const res = await spotifyApi.getPlaylist(playlistID);
 
-  const tracks = res.body.tracks.items.map((track) => {
-    return {
-      artist: track.track.artists[0].name,
-      artistid: track.track.artists[0].id,
-      name: track.track.name,
-      image: track.track.album.images[0].url,
-      trackurl: track.track.preview_url,
-      duration: track.track.duration_ms,
-      id: track.track.id,
-    };
-  });
+  const tracks = res.body.tracks.items
+    .filter((track) => {
+      return track.track.preview_url != null;
+    })
+    .map((track) => {
+      return {
+        artist: track.track.artists[0].name,
+        artistid: track.track.artists[0].id,
+        name: track.track.name,
+        image: track.track.album.images[0].url,
+        trackurl: track.track.preview_url,
+        duration: track.track.duration_ms,
+        id: track.track.id,
+      };
+    });
 
   return {
     name: res.body.name,
@@ -165,29 +169,23 @@ export async function NextSong(accessToken, artistid) {
   };
 }
 
-export async function SavePlaylist(playlistID) {
-  var collection = [];
-  collection = JSON.parse(localStorage.getItem("musica:collection")) || [];
-
-  let duplicate = false;
-  console.log(collection.length);
-  for (let i = 0; i < collection.length; i++) {
-    if (collection[i] === playlistID) duplicate = true;
-  }
-
-  if (!duplicate) collection.push(playlistID);
-  localStorage.setItem("musica:collection", JSON.stringify(collection));
-}
-
 function checkDuplicate(playlist, id) {
   for (let i = 0; i < playlist.length; i++) if (playlist[i] === id) return true;
   return false;
 }
 
+export async function Save(playlistID, type) {
+  var collection = [];
+  collection =
+    JSON.parse(localStorage.getItem(`musica:collection:${type}`)) || [];
+
+  if (!checkDuplicate(collection, playlistID)) collection.push(playlistID);
+  localStorage.setItem(`musica:collection:${type}`, JSON.stringify(collection));
+}
+
 export async function like(id, type) {
   var localdata = [];
   localdata = JSON.parse(localStorage.getItem(`musica:like:${type}`)) || [];
-  console.log(localdata);
 
   if (!checkDuplicate(localdata, id)) localdata.push(id);
   localStorage.setItem(`musica:like:${type}`, JSON.stringify(localdata));
@@ -197,7 +195,8 @@ export async function GetSavedPlaylist(accessToken) {
   spotifyApi.setAccessToken(accessToken);
 
   const ids =
-    (await JSON.parse(localStorage.getItem("musica:collection"))) || [];
+    (await JSON.parse(localStorage.getItem("musica:collection:playlist"))) ||
+    [];
 
   if (ids.length === 0) return;
 
@@ -208,6 +207,29 @@ export async function GetSavedPlaylist(accessToken) {
         name: playlist.body.name,
         image: playlist.body.images[0].url,
         artist: playlist.body.tracks.items[0].track.artists[0].name,
+        id: id,
+      };
+    })
+  );
+
+  return await listOfPromises;
+}
+
+export async function GetSavedAlbum(accessToken) {
+  spotifyApi.setAccessToken(accessToken);
+
+  const ids =
+    (await JSON.parse(localStorage.getItem("musica:collection:album"))) || [];
+
+  if (ids.length === 0) return;
+
+  const listOfPromises = Promise.all(
+    ids.map(async (id) => {
+      const album = await spotifyApi.getAlbum(id);
+      return {
+        name: album.body.name,
+        image: album.body.images[0].url,
+        artist: album.body.tracks.items[0].artists[0].name,
         id: id,
       };
     })
@@ -237,6 +259,29 @@ export async function GetLikedPlaylist(accessToken) {
 
   return await listOfPromises;
 }
+
+export async function GetLikedAlbum(accessToken) {
+  spotifyApi.setAccessToken(accessToken);
+
+  const ids =
+    (await JSON.parse(localStorage.getItem("musica:like:album"))) || [];
+  if (ids.length === 0) return;
+
+  const listOfPromises = Promise.all(
+    ids.map(async (id) => {
+      const album = await spotifyApi.getAlbum(id);
+      return {
+        name: album.body.name,
+        image: album.body.images[0].url,
+        artist: album.body.tracks.items[0].artists[0].name,
+        id: id,
+      };
+    })
+  );
+
+  return await listOfPromises;
+}
+
 export async function GetLikedTracks(accessToken) {
   spotifyApi.setAccessToken(accessToken);
 

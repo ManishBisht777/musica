@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import SongUtil from "./SongUtil";
 import { NextSong } from "../../utils/utils";
-import { SetCurrentPlaying } from "../../store/Songslice";
+import { SetCurrentPlaying, SetIndex } from "../../store/Songslice";
 
 const Songbar = () => {
   const {
@@ -17,6 +17,9 @@ const Songbar = () => {
     CurrentPlayingName,
     CurrentPlayingArtist,
     CurrentPlayingArtistID,
+    CurrentPlaylistTracks,
+    IsFromPlaylist,
+    CurrentPlayingIndex,
   } = useSelector((state) => state.Song);
 
   const dispatch = useDispatch();
@@ -52,9 +55,32 @@ const Songbar = () => {
     });
   }
 
-  const nextsong = async () => {
-    const newsong = await NextSong(accesstoken, CurrentPlayingArtistID);
+  const prevSong = async () => {
+    let newsong = "";
+    let idx = CurrentPlayingIndex;
 
+    if (IsFromPlaylist) {
+      if (idx - 1 < 0) idx = CurrentPlaylistTracks.length;
+      newsong = CurrentPlaylistTracks[idx - 1];
+
+      dispatch(SetIndex(idx - 1));
+    } else {
+      newsong = await NextSong(accesstoken, CurrentPlayingArtistID);
+    }
+
+    dispatch(SetCurrentPlaying(newsong));
+  };
+
+  const nextsong = async () => {
+    let newsong = "";
+    let idx = CurrentPlayingIndex;
+    if (!IsFromPlaylist)
+      newsong = await NextSong(accesstoken, CurrentPlayingArtistID);
+    else {
+      if (idx + 1 === CurrentPlaylistTracks.length) idx = -1;
+      newsong = CurrentPlaylistTracks[idx + 1];
+      dispatch(SetIndex(idx + 1));
+    }
     dispatch(SetCurrentPlaying(newsong));
   };
 
@@ -72,7 +98,11 @@ const Songbar = () => {
           </article>
           <div className="audio-box">
             <div className="audio-controls">
-              <button>
+              <button
+                onClick={() => {
+                  prevSong();
+                }}
+              >
                 <img src={previcon} alt="prev" />
               </button>
               <div className="playpause">

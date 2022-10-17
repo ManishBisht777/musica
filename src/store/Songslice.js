@@ -6,6 +6,10 @@ const initialState = {
   CurrentPlayingName: "",
   CurrentPlayingArtist: "",
   CurrentPlayingArtistID: "",
+  CurrentPlaylistInfo: [],
+  CurrentPlaylistTracks: [],
+  CurrentPlayingIndex: "",
+  IsFromPlaylist: "",
 };
 
 export const Songslice = createSlice({
@@ -20,9 +24,19 @@ export const Songslice = createSlice({
       state.CurrentPlayingUrl = action.payload.trackurl;
       state.CurrentPlayingArtistID = action.payload.artistid;
     },
+
+    SetPlaylist: (state, action) => {
+      state.CurrentPlaylistInfo = action.payload.playlistInfo;
+      state.CurrentPlaylistTracks = action.payload.playlistTracks;
+      state.IsFromPlaylist = true;
+      state.CurrentPlayingIndex = 0;
+    },
+    SetIndex: (state, action) => {
+      state.CurrentPlayingIndex = action.payload;
+    },
   },
 });
 
-export const { SetCurrentPlaying } = Songslice.actions;
+export const { SetCurrentPlaying, SetPlaylist, SetIndex } = Songslice.actions;
 
 export default Songslice.reducer;

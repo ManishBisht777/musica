@@ -1,7 +1,7 @@
 import Navbar from "./components/navbar/Navbar";
 import "./css/main.css";
 import Home from "./pages/home/Home";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Collection from "./pages/collection/Collection";
 import Playlist from "./pages/playlist/Playlist";
 
@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { setToken } from "./store/Authslice";
 import Radio from "./pages/radio/Radio";
 import Music from "./pages/music/Music";
+import Saved from "./pages/collection/Saved";
+import Liked from "./pages/collection/Liked";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +36,14 @@ function App() {
           <AnimatePresence custom="wait">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/collection" element={<Collection />} />
+              <Route path="/collection" element={<Collection />}>
+                <Route
+                  path="/collection"
+                  element={<Navigate to="/collection/saved" />}
+                />
+                <Route path="saved" element={<Saved />} />
+                <Route path="liked" element={<Liked />} />
+              </Route>
               <Route path="/browse/:type/:id" element={<Playlist />} />
               <Route path="/radio" element={<Radio />} />
               <Route path="/music" element={<Music />} />
