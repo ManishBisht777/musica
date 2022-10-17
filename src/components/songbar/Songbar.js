@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import playicon from "../../images/icons/play.svg";
 import nexticon from "../../images/icons/next.svg";
 import previcon from "../../images/icons/prev.svg";
 import volume from "../../images/icons/volume.svg";
 import pause from "../../images/icons/pause.svg";
 import { useDispatch, useSelector } from "react-redux";
-
 import SongUtil from "./SongUtil";
 import { NextSong } from "../../utils/utils";
 import { SetCurrentPlaying, SetIndex } from "../../store/Songslice";
@@ -83,6 +82,18 @@ const Songbar = () => {
     }
     dispatch(SetCurrentPlaying(newsong));
   };
+
+  useEffect(() => {
+    let cancel = false;
+    if (curPercentage < 100) return;
+
+    const handleNextSong = () => {
+      if (!cancel) nextsong();
+    };
+
+    handleNextSong();
+    return () => (cancel = true);
+  }, [curPercentage, nexticon]);
 
   return (
     <div className="songbar">
