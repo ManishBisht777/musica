@@ -34,9 +34,15 @@ export const Songslice = createSlice({
     SetIndex: (state, action) => {
       state.CurrentPlayingIndex = action.payload;
     },
+    ClearPlaylist: (state) => {
+      state.CurrentPlaylistTracks = [];
+      state.CurrentPlaylistInfo = [];
+      state.IsFromPlaylist = false;
+    },
   },
 });
 
-export const { SetCurrentPlaying, SetPlaylist, SetIndex } = Songslice.actions;
+export const { SetCurrentPlaying, SetPlaylist, SetIndex, ClearPlaylist } =
+  Songslice.actions;
 
 export default Songslice.reducer;

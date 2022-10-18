@@ -9,27 +9,20 @@ function SongUtil() {
   useEffect(() => {
     const audio = document.getElementById("Song");
     const volume = document.getElementById("volume-slider");
-    const mutevol = document.getElementById("mute");
 
     if (!audio) return;
-
-    // state setters wrappers
-    const setAudioData = () => {
-      setDuration(audio.duration);
-      setCurTime(audio.currentTime);
-    };
 
     volume.addEventListener("input", (e) => {
       const value = e.target.value;
       audio.volume = value / 100;
     });
 
-    mutevol.addEventListener("click", () => {
-      if (audio.volume === 0) audio.volume = 1;
-      else audio.value = 0;
-    });
-
     const setAudioTime = () => setCurTime(audio.currentTime);
+
+    const setAudioData = () => {
+      setDuration(audio.duration);
+      setCurTime(audio.currentTime);
+    };
 
     // DOM listeners: update React state on DOM events
     audio.addEventListener("loadeddata", setAudioData);
@@ -43,6 +36,8 @@ function SongUtil() {
       audio.currentTime = clickedTime;
       setClickedTime(null);
     }
+
+    // state setters wrappers
 
     // effect cleanup
     return () => {

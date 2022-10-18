@@ -87,7 +87,7 @@ const Songbar = () => {
     <div className="songbar">
       {CurrentPlayingUrl ? (
         <>
-          <audio id="Song" src={CurrentPlayingUrl} controls></audio>
+          <audio id="Song" src={CurrentPlayingUrl} controls autoPlay></audio>
           <article className="current-song">
             <img src={CurrentPlayingImg} alt="list" />
             <article>
