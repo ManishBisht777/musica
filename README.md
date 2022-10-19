@@ -32,9 +32,6 @@ Create A music App Close to [Figma Design](https://www.figma.com/file/pbwKUpfKPo
 ### Screenshot
 
 ![](./showcase/musica-home.png)
-![](./showcase/musica-collection.png)
-![](./showcase/playlist.png)
-![](./showcase/serach.png)
 
 ### Links
 
