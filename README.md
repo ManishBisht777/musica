@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Setp on local](#setup)
+- [Author](#author)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+### The challenge
 
-In the project directory, you can run:
+Create A music App Close to [Figma Design](https://www.figma.com/file/pbwKUpfKPoAcBIgFoXFueS/Musica)
 
-### `npm start`
+- View the optimal layout for the component depending on their device's screen size
+- See hover states for all interactive elements on the page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Functionalies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+✅ Play, Pause and control Volume of music
+✅ Play Entire Playlist
+✅ Prev and Next Song (Play Song form Playlist if PlayAll button Clicked othervise play Songs related to it)
+✅ View Current Playing Playlist
+✅ Clear Current Playing Playlist
+✅ Search Tracks and Play Them
+✅ Login Using Spotify Auth
+✅ Save Playlist And Albums to Collection
+✅ Like PlayList , Tracks and Albums
+✅ view Liked and Saved Playlist, Tracks and Album
 
-### `npm test`
+### Screenshot
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![](./showcase/musica-home.png)
+![](./showcase/musica-collection.png)
+![](./showcase/playlist.png)
+![](./showcase/serach.png)
 
-### `npm run build`
+### Links
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🥰 [Live Link](true-song.netlify.app/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## My process
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Built with
 
-### `npm run eject`
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Desktop-first workflow
+- React
+- Spotify Api
+- Custom Hooks React
+- React-Router
+- Redux Toolkit
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Installation Steps
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. [Fork](https://github.com/ManishBisht777/musica)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Clone the project, you can use the following command:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/<your-github-username>/musica
+```
 
-## Learn More
+3. Navigate to the project directory
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd musica
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Install dependencies with npm install
 
-### Code Splitting
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. Setup Spotify Dashboard
 
-### Analyzing the Bundle Size
+Create App in [Spotify Dashboard](https://developer.spotify.com/dashboard/applications)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Give Redirect Urls After a Succesful Authentication
 
-### Making a Progressive Web App
+![](./showcase/env.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+6. setup Environment
 
-### Advanced Configuration
+Create File with .env on like root/.env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+REACT_APP_CLIENT_ID = YOUR APP CLIENT ID
+REACT_APP_REDIRECT_URL = REDIRECT URL
+REACT_APP_CLIENT_SECERT = YOUR APP SECERT
 
-### Deployment
+7. Run the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm run start
+```
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [Manish Bisht](https://manishbishtportfolio.netlify.app/)
+- Twitter - [@manishbisht9711](https://www.twitter.com/manishbisht9711)
