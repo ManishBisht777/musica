@@ -18,3 +18,10 @@
     width: fit-content;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .music {
+    padding-left: 0;
+    padding: 7rem 1rem;
+  }
+}

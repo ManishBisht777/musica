@@ -737,4 +737,11 @@ article {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+@media screen and (max-width: 768px) {
+  .music {
+    padding-left: 0;
+    padding: 7rem 1rem;
+  }
 }/*# sourceMappingURL=main.css.map */
