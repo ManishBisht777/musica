@@ -1,13 +1,14 @@
 import React from "react";
-import playicon from "../../images/icons/play.svg";
-import nexticon from "../../images/icons/next.svg";
-import previcon from "../../images/icons/prev.svg";
-import volume from "../../images/icons/volume.svg";
-import pause from "../../images/icons/pause.svg";
+// import playicon from "../../images/icons/play.svg";
+// import nexticon from "../../images/icons/next.svg";
+// import previcon from "../../images/icons/prev.svg";
+// import volume from "../../images/icons/volume.svg";
+// import pause from "../../images/icons/pause.svg";
 import { useDispatch, useSelector } from "react-redux";
-import SongUtil from "./SongUtil";
+import AudioPlayer from "react-h5-audio-player";
 import { NextSong } from "../../utils/utils";
 import { SetCurrentPlaying, SetIndex } from "../../store/Songslice";
+import "react-h5-audio-player/lib/styles.css";
 
 const Songbar = () => {
   const {
@@ -24,35 +25,6 @@ const Songbar = () => {
   const dispatch = useDispatch();
 
   const accesstoken = useSelector((state) => state.Auth.accessToken);
-  const { curTime, duration, playing, setPlaying, setClickedTime } = SongUtil();
-
-  const curPercentage = (curTime / duration) * 100;
-
-  function calcClickedTime(e) {
-    const clickPositionInPage = e.pageX;
-    const bar = document.querySelector(".bar__progress");
-    const barStart = bar.getBoundingClientRect().left + window.scrollX;
-    const barWidth = bar.offsetWidth;
-    const clickPositionInBar = clickPositionInPage - barStart;
-    const timePerPixel = duration / barWidth;
-    return timePerPixel * clickPositionInBar;
-  }
-
-  const onTimeUpdate = (time) => setClickedTime(time);
-
-  function handleTimeDrag(e) {
-    onTimeUpdate(calcClickedTime(e));
-
-    const updateTimeOnMove = (eMove) => {
-      onTimeUpdate(calcClickedTime(eMove));
-    };
-
-    document.addEventListener("mousemove", updateTimeOnMove);
-
-    document.addEventListener("mouseup", () => {
-      document.removeEventListener("mousemove", updateTimeOnMove);
-    });
-  }
 
   const prevSong = async () => {
     let newsong = "";
@@ -87,7 +59,6 @@ const Songbar = () => {
     <div className="songbar">
       {CurrentPlayingUrl ? (
         <>
-          <audio id="Song" src={CurrentPlayingUrl} controls autoPlay></audio>
           <article className="current-song">
             <img src={CurrentPlayingImg} alt="list" />
             <article>
@@ -95,68 +66,23 @@ const Songbar = () => {
               <p>{CurrentPlayingArtist}</p>
             </article>
           </article>
-          <div className="audio-box">
-            <div className="audio-controls">
-              <button
-                onClick={() => {
-                  prevSong();
-                }}
-              >
-                <img src={previcon} alt="prev" />
-              </button>
-              <div className="playpause">
-                {playing ? (
-                  <button
-                    onClick={() => {
-                      setPlaying(false);
-                    }}
-                  >
-                    <img src={pause} alt="pause" aria-label="pause-music" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setPlaying(true);
-                    }}
-                  >
-                    <img src={playicon} alt="play" aria-label="play-music" />
-                  </button>
-                )}
-              </div>
-              <button
-                onClick={() => {
-                  nextsong();
-                }}
-              >
-                <img src={nexticon} alt="next" />
-              </button>
-            </div>
-            <div className="audio">
-              <div
-                className="bar__progress"
-                style={{
-                  background: `linear-gradient(to right, #facd66 ${curPercentage}%, white 0)`,
-                }}
-                onMouseDown={(e) => handleTimeDrag(e)}
-              >
-                <span
-                  className="bar__progress__knob"
-                  style={{ left: `${curPercentage - 2}%` }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="volume-output">
-            <button id="mute">
-              <img src={volume} alt="volume" />
-            </button>
-            <input
-              type="range"
-              id="volume-slider"
-              max="100"
-              aria-label="volume-bar"
-            />
-          </div>
+
+          <AudioPlayer
+            src={CurrentPlayingUrl}
+            showSkipControls
+            showJumpControls={false}
+            autoPlay
+            onClickPrevious={() => {
+              prevSong();
+            }}
+            onClickNext={() => {
+              nextsong();
+            }}
+            onEnded={() => {
+              nextsong();
+            }}
+            className="player"
+          ></AudioPlayer>
         </>
       ) : (
         <>

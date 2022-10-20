@@ -47,153 +47,81 @@
   }
 }
 
-.audio-box {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  input[type="range"] {
-    width: 100%;
-  }
+.player .rhap_main {
+  flex-direction: column-reverse;
 }
 
-.bar__progress {
-  flex: 1;
-  border-radius: 5px;
-  height: 8px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.rhap_container {
+  background: transparent !important;
 }
 
-.bar__progress__knob {
-  position: relative;
-  height: 12px;
-  width: 12px;
-  border: 0.5rem solid white;
-  border-radius: 50%;
-  background-color: $yellow;
+.player .rhap_main-controls {
+  position: absolute;
+  top: 0.7rem;
+  left: 40%;
 }
 
-.playpause {
-  background: $yellow;
-  border-radius: 3rem;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 1rem !important;
-  }
+.player .rhap_progress-section {
+  position: absolute;
+  bottom: 0.7rem;
+  left: 25%;
+  right: 25%;
 }
-
-.volume-output {
-  width: 20%;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-
-  button {
-    img {
-      width: 1.5rem;
-      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg)
-        brightness(110%) contrast(103%);
-    }
-  }
-}
-
-.audio-controls {
-  width: 100%;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-
-  button {
-    img {
-      width: 2rem;
-      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg)
-        brightness(110%) contrast(103%);
-    }
-  }
-}
-
-input[type="range"] {
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-  width: 100%;
-  height: 0.5rem;
-  margin: 0;
-  border: none;
-  border-radius: 1rem;
-  background: $yellow;
-  outline: none; /* no focus outline */
-}
-
-input[type="range"]::-moz-range-track {
-  border: inherit;
-  background: transparent;
-}
-
-input[type="range"]::-ms-track {
-  border: inherit;
-  color: transparent; /* don't drawn vertical reference line */
-  background: transparent;
-}
-
-input[type="range"]::-ms-fill-lower,
-input[type="range"]::-ms-fill-upper {
-  background: transparent;
-}
-
-input[type="range"]::-ms-tooltip {
+.player .rhap_additional-controls {
   display: none;
 }
 
-/* thumb */
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border: none;
-  border-radius: 50%;
-  background: $white;
-  cursor: pointer;
-}
-input[type="range"]::-moz-range-thumb {
-  width: 1rem;
-  height: 1rem;
-  border: none;
-  border-radius: 50%;
-  background: $white;
-  cursor: pointer;
+.player .rhap_volume-container {
+  display: flex;
+  position: absolute;
+  width: 10%;
+  top: 20%;
+  right: 5rem;
 }
 
-input[type="range"]::-ms-thumb {
-  width: 1rem;
-  height: 1rem;
-  border: none;
-  border-radius: 50%;
+.rhap_volume-button {
+  color: $yellow !important;
+}
+
+.player .rhap_play-pause-button * {
+  color: $yellow;
+}
+
+.player .rhap_progress-filled {
+  background: $yellow !important;
+}
+
+.rhap_progress-indicator,
+.rhap_volume-indicator {
+  background: $white !important;
+}
+
+.player .rhap_download-progress,
+.rhap_volume-bar {
   background: $white;
-  cursor: pointer;
+}
+
+.rhap_controls-section {
+  display: block !important;
+}
+
+.rhap_time {
+  display: none;
 }
 
 @media screen and (max-width: 600px) {
   .songbar {
     justify-content: space-between;
   }
-  .volume-output {
-    display: none;
+
+  .player .rhap_progress-section,
+  .player .rhap_volume-container {
+    display: none !important;
   }
 
-  .audio {
-    display: none;
-  }
-
-  .playpause {
-    width: 2rem;
-    height: 2rem;
+  .player .rhap_main-controls {
+    left: 50%;
+    right: 2rem;
+    top: 33%;
   }
 }
